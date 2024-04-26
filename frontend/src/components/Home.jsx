@@ -47,22 +47,22 @@ const Home = () => {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="">
+                      <a className="nav-link" href="#about">
                         About
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="">
-                        Services
+                      <a className="nav-link" href="#services">
+                        Services<onfocus></onfocus>
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="">
+                      <a className="nav-link" href="#why">
                         Why Us
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="">
+                      <a className="nav-link" href="#team">
                         Team
                       </a>
                     </li>
@@ -204,7 +204,7 @@ const Home = () => {
           {/* end slider section */}
         </div>
         {/* service section */}
-        <section className="service_section layout_padding">
+        <section id='services' className="service_section layout_padding">
           <div className="service_container">
             <div className="container ">
               <div className="heading_container heading_center">
@@ -272,7 +272,7 @@ const Home = () => {
         </section>
         {/* end service section */}
         {/* about section */}
-        <section className="about_section layout_padding">
+        <section id='about' className="about_section layout_padding">
           <div className="container  ">
             <div className="heading_container heading_center">
               <h2>
@@ -323,7 +323,7 @@ const Home = () => {
         </section>
         {/* end about section */}
         {/* why section */}
-        <section className="why_section layout_padding">
+        <section id='why' className="why_section layout_padding">
           <div className="container">
             <div className="heading_container heading_center">
               <h2>
@@ -413,7 +413,7 @@ const Home = () => {
         </section>
         {/* end why section */}
         {/* team section */}
-        <section className="team_section layout_padding">
+        <section id="team" className="team_section layout_padding">
           <div className="container-fluid">
             <div className="heading_container heading_center">
               <h2 className="">
