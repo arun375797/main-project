@@ -22,11 +22,13 @@ const Login = () => {
     axios
       .post("http://localhost:5000/api/student/login", user)
       .then((res) => {
-        if (res.data.message === "User Login Success") {
-          alert(res.data.message);
-          navigate("");
+        if (res.data.message === "Login success") {
+          
+          navigate("/project");
+          
         } else {
-          alert(res.data.message);
+        alert('User login failed')
+        navigate("/signup");
         }
       })
       .catch((err) => {
