@@ -16,6 +16,7 @@ const Home = () => {
           {/* header section strats */}
           <header className="header_section">
             <div className="container-fluid">
+              
               <nav className="navbar navbar-expand-lg custom_nav-container ">
                 <a className="navbar-brand" href="index.html">
                   <img
