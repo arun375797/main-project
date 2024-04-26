@@ -7,6 +7,7 @@ import Signup from './components/Signup';
 import Studentdashboard from './components/Studentdashboard';
 import Mern from './components/Mern';
 import Projectdashboard from './components/Projectdashboard';
+import Demo from './components/Demo';
 function App() {
   return (
     <div className="App">
@@ -17,7 +18,8 @@ function App() {
     <Route path={'/signup'} element={<Signup/>}></Route>
     <Route path={'/stdash'} element={<Studentdashboard/>}></Route>
     <Route path={'/mern'} element={<Mern/>}></Route>
-    <Route path={'/project'} element={<Projectdashboard/>}></Route>
+        <Route path={'/project'} element={<Projectdashboard />}></Route>
+        <Route path={'/demo'} element={<Demo />}></Route>
    </Routes>
     </div>
   );
