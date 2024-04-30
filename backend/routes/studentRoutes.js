@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Student = require("../models/studentModel");
+const ChatMessage= require("../models/chatMessageModel");
 const WeeklySubmission = require("../models/weeklySubmissionSchema");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -63,6 +64,53 @@ router.post("/weekly-submission", async (req, res) => {
       res.status(500).json({ error: "Failed to create weekly submission" });
     }
   });
+
+
+
+
+
+// Route to fetch all chat messages
+router.get('/chat-messages', async (req, res) => {
+    try {
+        const chatMessages = await ChatMessage.find();
+        res.status(200).json(chatMessages);
+    } catch (error) {
+        console.error("Error fetching chat messages:", error);
+        res.status(500).json({ error: "Failed to fetch chat messages" });
+    }
+});
+
+// Route to add a new chat message
+router.post('/chat-messages', async (req, res) => {
+    try {
+        const { message } = req.body;
+        const newChatMessage = await ChatMessage.create({ message });
+        res.status(201).json(newChatMessage);
+    } catch (error) {
+        console.error("Error creating chat message:", error);
+        res.status(500).json({ error: "Failed to create chat message" });
+    }
+});
+
+// Route to add a comment to a chat message
+router.post('/chat-messages/:id/comments', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { comment } = req.body;
+        const chatMessage = await ChatMessage.findById(id);
+        if (!chatMessage) {
+            return res.status(404).json({ error: "Chat message not found" });
+        }
+        chatMessage.comments.push(comment);
+        await chatMessage.save();
+        res.status(200).json(chatMessage);
+    } catch (error) {
+        console.error("Error adding comment to chat message:", error);
+        res.status(500).json({ error: "Failed to add comment to chat message" });
+    }
+});
+
+
 
 
 module.exports = router;
