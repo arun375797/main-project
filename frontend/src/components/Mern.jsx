@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
+import { Box, TextField } from "@mui/material";
+import axios from "axios";
 
 
 const Mern = () => {
+
+  const [formData, setFormData] = useState("");
+
+  const handleChange = (e) => {
+    setFormData(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const currentDate = new Date();
+      const currentDay = currentDate.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+  //       Sunday: 0
+  // Monday: 1
+  // Tuesday: 2
+  // Wednesday: 3
+  // Thursday: 4
+  // Friday: 5
+  // Saturday: 6
+  // const currentDay='Sun Apr 29 2024 21:43:20 GMT+0530 (India Standard Time)';
+      // Check if it's Saturday (day 6) or Sunday (day 0)
+      if (currentDay === 6 || currentDay === 0) {
+        const response = await axios.post("http://localhost:5000/api/student/weekly-submission", { data: formData });
+        console.log(response.data); // Log the response from the backend
+      } else {
+       alert("Weekly submission is only allowed on weekends."); // Inform the user that submission is only allowed on weekends
+      }
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
   
   return (
     <div
@@ -184,6 +216,42 @@ const Mern = () => {
               </div>
             </AccordionDetails>
           </Accordion>
+
+
+
+          <Accordion sx={{ width: "100%" }}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1-content"
+        id="panel1-header"
+        sx={{ fontSize: "1.2rem", backgroundColor: "#f44336", color: "#fff" }} // Increase font size and add background color
+      >
+        Weekly Submission
+      </AccordionSummary>
+      <AccordionDetails>
+        <div style={{ fontSize: "1.2rem" }}>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Outlined"
+              variant="outlined"
+              value={formData}
+              onChange={handleChange}
+            />
+            <Button variant="outlined" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Box>
+        </div>
+      </AccordionDetails>
+    </Accordion>
 
         </div>
       </div>
