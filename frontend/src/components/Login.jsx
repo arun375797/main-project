@@ -6,7 +6,6 @@ import { Link as RouterLink,useNavigate} from "react-router-dom";
 import axios from "axios";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-
 const Login = () => {
   const navigate = useNavigate();
 
@@ -23,7 +22,8 @@ const Login = () => {
       .post("http://localhost:5000/api/student/login", user)
       .then((res) => {
         if (res.data.message === "Login success") {
-          
+          alert(res.data.message);
+          sessionStorage.setItem('userToken',res.data.token);
           navigate("/project");
           
         } else {

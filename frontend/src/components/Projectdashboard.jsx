@@ -61,7 +61,9 @@ const Projectdashboard = () => {
   const handleSelectProject = (projectId) => {
     setSelectedProjectId(projectId);
   };
-
+  const tokenrelease=()=>{
+    sessionStorage.removeItem('userToken');
+  }
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
@@ -75,7 +77,9 @@ const Projectdashboard = () => {
           <Link component={RouterLink} to="/dashboard" color="inherit" style={{ marginRight: '25px' }}>
             Project-Dashboard
           </Link>
-          <Link component={RouterLink} to="/login" color="inherit">
+          <Link component={RouterLink} to="/login" color="inherit"
+           onClick={tokenrelease}
+          >
             Logout
           </Link>
         </Toolbar>
@@ -94,7 +98,7 @@ const Projectdashboard = () => {
                   {project.description}
                 </Typography>
                 <Link component={RouterLink} to={project.link} className={classes.link}>
-                  Read More
+                  Read more
                 </Link>
               </CardContent>
             </Card>
