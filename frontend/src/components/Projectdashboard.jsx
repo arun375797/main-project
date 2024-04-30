@@ -57,12 +57,11 @@ const useStyles = makeStyles({
 const Projectdashboard = () => {
   const classes = useStyles();
   const [selectedProjectId, setSelectedProjectId] = useState(null);
+
   const handleSelectProject = (projectId) => {
     setSelectedProjectId(projectId);
   };
-  const tokenrelease=()=>{
-    sessionStorage.removeItem('userToken');
-  }
+
   return (
     <>
       <AppBar position="static" className={classes.appBar}>
@@ -71,15 +70,13 @@ const Projectdashboard = () => {
             <img src="images/logo.png" alt="" style={{ height: "50px" }} />
           </a>
           <Typography variant="h6" className={classes.titleTypography}>
-            Student  Dashboard
+            Student Dashboard
           </Typography>
-          <Link component={RouterLink} to="/mern" color="inherit" style={{ marginRight: '25px' }}>
+          <Link component={RouterLink} to="/dashboard" color="inherit" style={{ marginRight: '25px' }}>
             Project-Dashboard
           </Link>
-          <Link component={RouterLink} to="/login" color="inherit"
-          onClick={tokenrelease}
-          >
-          Logout
+          <Link component={RouterLink} to="/login" color="inherit">
+            Logout
           </Link>
         </Toolbar>
       </AppBar>
