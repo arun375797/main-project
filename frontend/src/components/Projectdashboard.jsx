@@ -98,7 +98,7 @@ const Projectdashboard = () => {
                   {project.description}
                 </Typography>
                 <Link component={RouterLink} to={project.link} className={classes.link}>
-                  Read More
+                  Read more
                 </Link>
               </CardContent>
             </Card>
