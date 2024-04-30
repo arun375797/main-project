@@ -71,7 +71,7 @@ const Projectdashboard = () => {
             <img src="images/logo.png" alt="" style={{ height: "50px" }} />
           </a>
           <Typography variant="h6" className={classes.titleTypography}>
-            Student Dashboard
+            Student  Dashboard
           </Typography>
           <Link component={RouterLink} to="/mern" color="inherit" style={{ marginRight: '25px' }}>
             Project-Dashboard
