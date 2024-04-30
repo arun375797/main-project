@@ -63,6 +63,4 @@ router.post("/weekly-submission", async (req, res) => {
       res.status(500).json({ error: "Failed to create weekly submission" });
     }
   });
-
-
 module.exports = router;

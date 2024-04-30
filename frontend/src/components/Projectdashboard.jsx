@@ -57,7 +57,6 @@ const useStyles = makeStyles({
 const Projectdashboard = () => {
   const classes = useStyles();
   const [selectedProjectId, setSelectedProjectId] = useState(null);
-
   const handleSelectProject = (projectId) => {
     setSelectedProjectId(projectId);
   };
@@ -80,7 +79,7 @@ const Projectdashboard = () => {
           <Link component={RouterLink} to="/login" color="inherit"
           onClick={tokenrelease}
           >
-            Logout
+          Logout
           </Link>
         </Toolbar>
       </AppBar>

@@ -11,5 +11,4 @@ const weeklySubmissionSchema = new mongoose.Schema({
     }
     // Additional fields can be added here
 });
-
 module.exports = mongoose.model('WeeklySubmission', weeklySubmissionSchema);
