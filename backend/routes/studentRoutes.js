@@ -110,7 +110,36 @@ router.post('/chat-messages/:id/comments', async (req, res) => {
     }
 });
 
-
+// Route to delete a chat message by ID
+router.delete('/chat-messages/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        // Find the chat message by ID and delete it
+        const deletedMessage = await ChatMessage.findByIdAndDelete(id);
+        if (!deletedMessage) {
+            return res.status(404).json({ error: "Chat message not found" });
+        }
+        res.status(200).json({ message: "Chat message deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting chat message:", error);
+        res.status(500).json({ error: "Failed to delete chat message" });
+    }
+});
+// Route to update a chat message
+router.put('/chat-messages/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { message } = req.body;
+        const updatedMessage = await ChatMessage.findByIdAndUpdate(id, { message }, { new: true });
+        if (!updatedMessage) {
+            return res.status(404).json({ error: "Chat message not found" });
+        }
+        res.status(200).json(updatedMessage);
+    } catch (error) {
+        console.error("Error updating chat message:", error);
+        res.status(500).json({ error: "Failed to update chat message" });
+    }
+});
 
 
 module.exports = router;
