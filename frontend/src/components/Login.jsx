@@ -23,7 +23,8 @@ const Login = () => {
       .then((res) => {
         if (res.data.message === "Login success") {
           alert(res.data.message);
-          sessionStorage.setItem('userToken',res.data.token);
+          sessionStorage.setItem('userToken', res.data.token);
+          sessionStorage.setItem('currentUser', res.data.email);
           navigate("/project");
           
         } else {
