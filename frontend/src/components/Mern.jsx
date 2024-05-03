@@ -7,7 +7,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import { Box, TextField } from "@mui/material";
 import axios from "axios";
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 const Mern = () => {
 
@@ -43,6 +45,7 @@ const Mern = () => {
   
   return (
     <div
+    
       style={{
         display: "flex",
         justifyContent: "center",
@@ -58,20 +61,22 @@ const Mern = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              marginTop: "50px",
+              marginTop: "40px",
             }}
           >
             <Button color="secondary">Secondary</Button>
+            <br /> 
           </div>
+          
+          <Button href="/chat">Discussion-Form</Button>
         </div>
       </div>
+
       <div style={{ flex: 3 }}>
-  <div style={{ marginLeft: "100px" }}>
-    
-    
-
-
-
+      <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
+      <br></br>
+      <br />
+      <div style={{ marginLeft: "100px" }}>
             <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -119,19 +124,6 @@ const Mern = () => {
               <Button>Agree</Button>
             </AccordionActions>
           </Accordion>
-
-
-
-
-
-          
-          
-
-
-
-
-
-          
           <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -147,11 +139,6 @@ const Mern = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-
-
-
-
-
           <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -169,11 +156,6 @@ const Mern = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-
-
-
-
-
           <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
