@@ -74,9 +74,7 @@ const Projectdashboard = () => {
           <Typography variant="h6" className={classes.titleTypography}>
             Student Dashboard
           </Typography>
-          <Link component={RouterLink} to="/dashboard" color="inherit" style={{ marginRight: '25px' }}>
-            Project-Dashboard
-          </Link>
+         
           <Link component={RouterLink} to="/login" color="inherit"
            onClick={tokenrelease}
           >
