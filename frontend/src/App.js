@@ -12,6 +12,7 @@ import Chat from './components/Chat';
 import StudentProjects from './components/StudentProjects';
 import Maincomponent from './components/Maincomponent';
 import Profile from './components/Profile';
+import ProjectOverview from './components/ProjectOverview';
 function App() {
   return (
     <div className="App">
@@ -20,7 +21,7 @@ function App() {
     <Route path={'/'} element={<Home/>}></Route>
     <Route path={'/login'} element={<Login/>}></Route>
     <Route path={'/signup'} element={<Signup/>}></Route>
-    <Route path={'/stdash'} element={<Studentdashboard/>}></Route>
+    <Route path={'/dashboard'} element={<Studentdashboard/>}></Route>
     <Route path={'/mern'} element={<Mern/>}></Route>
         <Route path={'/project'} element={<Projectdashboard />}></Route>
         <Route path={'/projects'} element={<StudentProjects />}></Route>
@@ -28,6 +29,7 @@ function App() {
         <Route path={'/chat'} element={<Chat />}></Route>
         <Route path={'/main'} element={<Maincomponent />}></Route>
         <Route path={'/profile'} element={<Profile />}></Route>
+        <Route path={'/overview'} element={<ProjectOverview />}></Route>
    </Routes>
     </div>
   );

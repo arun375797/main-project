@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Link, Grid, Card, CardContent, Button } from '@material-ui/core';
-import { Link as RouterLink } from 'react-router-dom';
+import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import proImg1 from '../images/project6.jpg';
@@ -57,6 +57,7 @@ const useStyles = makeStyles({
 
 
 const StudentProjects = () => {
+    const navigate = useNavigate();
     const classes = useStyles();
     const [projects, setProjects] = useState([]);
     
@@ -65,7 +66,8 @@ const StudentProjects = () => {
 
     useEffect(() => {
         // Retrieve email from sessionStorage
-        const userEmail = sessionStorage.getItem('userEmail');
+        const userEmail = sessionStorage.getItem('currentUser');
+        console.log(userEmail)
         if (userEmail) {
             getUser(userEmail);
         }
@@ -78,7 +80,8 @@ const StudentProjects = () => {
             setUser(user.data);
             setError(null);
         } catch (error) {
-            setError(error.user.data.message);
+            console.log(error.response.data.message)
+            setError(error.response.data.message);
             setUser(null);
         }
     };
@@ -99,16 +102,36 @@ const StudentProjects = () => {
         fetchProjects();
     }, []); // Empty dependency array ensures this effect runs only once, like componentDidMount
 
-    const handleSelectProject = (project) => {
+    const handleSelectProject = async (project, user) => {
         console.log('Selected project:', project.projectId);
         console.log('Selected project:', project.title);
+        console.log('Selected project:', project._id);
         console.log('User logged in:', user.name);
+        console.log('User logged in:', user._id);
 
-        // Perform actions with selected project, e.g., redirect to project page
+        try {
+            const response = await axios.post('http://localhost:5000/api/studentProjects/add', {
+                projectId: project._id,
+                title: project.title,
+                studentId: user._id,
+                email: user.email,
+                name: user.name,
+                duration: project.duration,
+                teamSize: project.teamSize,
+            });
+            alert(`Project added to student: ${ response.data.title}`);
+            console.log('Project added to student:', response.data);
+            navigate('/main');
+        } catch (error) {
+            navigate('/main');
+            console.error('Error adding project:', error);
+        }
     };
+
 
     const tokenrelease = () => {
         sessionStorage.removeItem('userToken');
+
     }
 
     return (
@@ -123,10 +146,11 @@ const StudentProjects = () => {
                     </Typography> */}
                    
                     <Typography variant="h6" className={classes.titleTypography}>
-                        Welcome, User {user.name}
+                        Welcome, User
+                        {/* {user.name} */}
                     </Typography>
                    
-                    <Link component={RouterLink} to="/dashboard" color="inherit" style={{ marginRight: '25px' }}>
+                    <Link component={RouterLink} to="/main" color="inherit" style={{ marginRight: '25px' }}>
                         Project-Dashboard
                     </Link>
                     <Link component={RouterLink} to="/login" color="inherit" onClick={tokenrelease}>

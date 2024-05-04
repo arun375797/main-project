@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-
-import Studentdashboard from './Studentdashboard';
-import StudentProjects from './StudentProjects';
 import Mern from './Mern';
+import Profile from './Profile';
+import Projectdashboard from './Projectdashboard';
+import Chat from './Chat'; // Import the Chat component
+import ProjectOverview from './ProjectOverview';
+
 
 const MainComponent = () => {
     const [activeTool, setActiveTool] = useState('dashboard'); // Initial active tool
@@ -20,11 +22,17 @@ const MainComponent = () => {
 
     const renderToolComponent = () => {
         switch (activeTool) {
+            case 'profile':
+                return <Profile />;
             case 'dashboard':
-                return <Studentdashboard />;
-            case 'tool1':
-                return <StudentProjects />;
-            case 'tool2':
+                return <Projectdashboard />;
+            case 'overview':
+                return <ProjectOverview />;
+            case 'weeksub':
+                return <Mern />;
+            case 'discuss': 
+                return <Chat />;
+            case 'prosub':
                 return <Mern />;
             // Add more cases for additional tools
             default:
@@ -33,22 +41,28 @@ const MainComponent = () => {
     };
 
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: '50px', backgroundColor: 'blueviolet', padding: '10px' }}>
-                <button onClick={toggleToolbarVisibility} style={{ marginBottom: '10px', background: 'none', border: 'none', width: '100%' }}>
-                    <FontAwesomeIcon icon={faBars} />
+        
+        <div>
+            
+        <div style={{ display: 'flex' }}>    
+            <div style={{ width: '50px', background: "#0f054c", padding: '10px' }}>
+                <button onClick={toggleToolbarVisibility} style={{ marginBottom: '10px', background: "#0f054c", border: 'none', width: '100%' }}>
+                    <FontAwesomeIcon icon={faBars} style={{ color: '#ffffff' }} />
                 </button>
             </div>
             {isToolbarVisible && (
-                <div style={{ width: '200px', backgroundColor: 'blueviolet', padding: '10px' }}>
-                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: 'white' }} onClick={() => handleToolClick('dashboard')}>Dashboard</button>
-                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: 'white' }} onClick={() => handleToolClick('tool1')}>Tool 1</button>
-                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: 'white' }} onClick={() => handleToolClick('tool2')}>Tool 2</button>
+                <div style={{ width: '250px', background: "#0f054c", padding: '10px' }}>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('profile')}>Profile</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('overview')}>Project Overview</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('dashboard')}>Materials</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('weeksub')}>Weekly Submission</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('discuss')}>Discussion Forum</button>
                     {/* Add more buttons for additional tools */}
                 </div>
             )}
             <div style={{ flex: 1, padding: '10px' }}>
                 {renderToolComponent()}
+            </div>
             </div>
         </div>
     );

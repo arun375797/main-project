@@ -1,27 +1,22 @@
 const mongoose = require('mongoose');
 
-const studentProjectsSchema = new mongoose.Schema({
+// Define the student project schema
+const studentProjectSchema = new mongoose.Schema({
+    
     projectId: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to Project model
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Project',
         required: true
     },
+    title: String,
+    
     studentId: {
-        type: mongoose.Schema.Types.ObjectId, // Reference to Student model
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
         required: true
     },
-    teamMembers: [{
-        email: {
-            type: String,
-            required: true,
-            match: /^\S+@\S+\.\S+$/ // Example email format validation
-        },
-        name: {
-            type: String,
-            required: true
-        }
-    }],
+    email: String,
+    name: String,
     duration: {
         type: Number,
         required: true
@@ -32,11 +27,11 @@ const studentProjectsSchema = new mongoose.Schema({
     },
     startDate: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now // Set start date to current date by default
     },
     endDate: {
-        type: Date,
-        required: true
+        type: Date
     },
     count: {
         type: Number,
@@ -45,4 +40,26 @@ const studentProjectsSchema = new mongoose.Schema({
     // Additional fields can be added here
 });
 
-module.exports = mongoose.model('StudentProjects', studentProjectsSchema);
+// Pre-save hook to auto-increment the count field and calculate the end date
+studentProjectSchema.pre('save', async function (next) {
+    try {
+        // Check if this is a new document or an update
+        if (this.isNew) {
+            // Get the current count
+            const count = await this.constructor.countDocuments();
+            // Increment count by 1
+            this.count = count + 1;
+        }
+
+        // Calculate end date based on start date and duration
+        const endDate = new Date(this.startDate);
+        endDate.setDate(endDate.getDate() + (30 * this.duration)); // Assuming each month has 30 days
+        this.endDate = endDate;
+
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = mongoose.model('StudentProject', studentProjectSchema);

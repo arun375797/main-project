@@ -11,7 +11,7 @@ const Profile = () => {
 
     useEffect(() => {
         // Retrieve email from sessionStorage
-        const userEmail = sessionStorage.getItem('userEmail');
+        const userEmail = sessionStorage.getItem('currentUser');
         if (userEmail) {
             getUser(userEmail);
         }
@@ -39,38 +39,52 @@ const Profile = () => {
     };
 
     return (
-        <Card sx={{ backgroundColor: 'blue', color: 'white', maxWidth: 400 }}>
-            <CardContent>
-                {user ? (
-                    <>
-                        <img src={getIcon(user.gender)} alt="User Icon" style={{ width: 100, height: 100, borderRadius: '50%', marginBottom: 20 }} />
-                        <Typography variant="h5" component="h2" gutterBottom>
-                            Welcome, User {user.name}
+        <div style={{ backgroundColor: '#231a6f', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography variant="h5" component="h2" gutterBottom style={{ color: '#ffffff', marginBottom: '20px' }}>
+                    Welcome to your profile {user && user.name} !!!
+                </Typography>
+                <Card sx={{ backgroundColor: '#0f054c', color: 'white', width: 700, marginBottom: '20px', borderRadius: '20px' }}>
+                    <CardContent>
+                        <Typography variant="h4" component="h1" gutterBottom style={{ color: '#ffffff', marginBottom: '20px' }}>
+                            P R O F I L E
                         </Typography>
-                        <Typography variant="h5" component="h2" gutterBottom>
-                            {user.name}
-                        </Typography>
-                        <Typography variant="body1" component="p" gutterBottom>
-                            Email: {user.email}
-                        </Typography>
-                        <Typography variant="body1" component="p" gutterBottom>
-                            Date of Birth: {user.dob}
-                        </Typography>
-                        <Typography variant="body1" component="p" gutterBottom>
-                            Mobile Number: {user.mobileNumber}
-                        </Typography>
-                        <Typography variant="body1" component="p">
-                            Gender: {user.gender}
-                        </Typography>
-                    </>
-                ) : (
-                    <Typography variant="body1" component="p">
-                        Loading...
-                    </Typography>
-                )}
-                {error && <Typography variant="body1" component="p">Error: {error}</Typography>}
-            </CardContent>
-        </Card>
+                        
+                    </CardContent>
+                </Card>
+                <Card sx={{ backgroundColor: '#2d1d94', color: 'white', width: 700, borderRadius: '20px' }}>
+                    <CardContent>
+                        {user ? (
+                            <>
+                                <img src={getIcon(user.gender)} alt="User Icon" style={{ width: 100, height: 100, borderRadius: '50%', marginBottom: 20 }} />
+
+                                <Typography variant="h5" component="h2" gutterBottom style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                    Name :  {user.name}
+                                </Typography>
+                                <Typography variant="body1" component="p" gutterBottom style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                    Email : {user.email}
+                                </Typography>
+                                <Typography variant="body1" component="p" gutterBottom style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                    Date of Birth : {user.dob}
+                                </Typography>
+
+                                <Typography variant="body1" component="p" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                    Gender : {user.gender}
+                                </Typography>
+                                <Typography variant="body1" component="p" gutterBottom style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                    Mobile Number : {user.mobileNumber}
+                                </Typography>
+                            </>
+                        ) : (
+                            <Typography variant="body1" component="p" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
+                                Loading...
+                            </Typography>
+                        )}
+                        {error && <Typography variant="body1" component="p" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Error: {error}</Typography>}
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
     );
 };
 

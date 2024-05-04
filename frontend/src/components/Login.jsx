@@ -25,7 +25,8 @@ const Login = () => {
           alert(res.data.message);
           sessionStorage.setItem('userToken', res.data.token);
           sessionStorage.setItem('currentUser', res.data.email);
-          navigate("/project");
+          console.log(user._id)
+          navigate("/projects");
           
         } else {
         alert('User login failed')
