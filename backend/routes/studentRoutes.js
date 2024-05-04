@@ -142,12 +142,36 @@ router.get('/chat-messages', async (req, res) => {
 // Route to add a new chat message
 router.post('/chat-messages', async (req, res) => {
     try {
-        const { message } = req.body;
-        const newChatMessage = await ChatMessage.create({ message });
+        const { message, sender } = req.body;
+        const newChatMessage = await ChatMessage.create({ message, senderName: sender.name });
         res.status(201).json(newChatMessage);
     } catch (error) {
         console.error("Error creating chat message:", error);
         res.status(500).json({ error: "Failed to create chat message" });
+    }
+});
+router.get('/chat-messages', async (req, res) => {
+    try {
+        const chatMessages = await ChatMessage.find();
+        // Map over chatMessages and transform each message object to include sender's name
+        const formattedMessages = chatMessages.map(message => {
+            return {
+                _id: message._id,
+                message: message.message,
+                senderName: message.senderName,
+                comments: message.comments.map(comment => {
+                    return {
+                        text: comment.text,
+                        senderName: comment.senderName
+                    };
+                }),
+                createdAt: message.createdAt
+            };
+        });
+        res.status(200).json(formattedMessages);
+    } catch (error) {
+        console.error("Error fetching chat messages:", error);
+        res.status(500).json({ error: "Failed to fetch chat messages" });
     }
 });
 
@@ -155,12 +179,12 @@ router.post('/chat-messages', async (req, res) => {
 router.post('/chat-messages/:id/comments', async (req, res) => {
     try {
         const { id } = req.params;
-        const { comment } = req.body;
+        const { comment, sender } = req.body;
         const chatMessage = await ChatMessage.findById(id);
         if (!chatMessage) {
             return res.status(404).json({ error: "Chat message not found" });
         }
-        chatMessage.comments.push(comment);
+        chatMessage.comments.push({ text: comment, senderName: sender.name });
         await chatMessage.save();
         res.status(200).json(chatMessage);
     } catch (error) {

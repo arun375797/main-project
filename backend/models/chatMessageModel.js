@@ -1,4 +1,3 @@
-// chatMessageModel.js
 const mongoose = require('mongoose');
 
 const chatMessageSchema = new mongoose.Schema({
@@ -6,7 +5,22 @@ const chatMessageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comments: [String],
+    senderName: {
+        type: String,
+        required: true
+    },
+    comments: [
+        {
+            text: {
+                type: String,
+                required: true
+            },
+            senderName: {
+                type: String,
+                required: true
+            }
+        }
+    ],
     createdAt: {
         type: Date,
         default: Date.now
