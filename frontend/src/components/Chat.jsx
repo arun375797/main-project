@@ -21,7 +21,7 @@ const Chat = () => {
               setError(null);
           } catch (error) {
               console.error('Error fetching user data:', error);
-              setError('Error fetching user data');
+              setError('Error fetching user datas');
           }
       };
 
