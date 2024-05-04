@@ -114,21 +114,15 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ error: "Failed to login" });
     }
 });
-
-router.post("/weekly-submission", async (req, res) => {
+router.post('/weekly-submission', async (req, res) => {
     try {
-      const { data } = req.body;
-      
-      // Create a new weekly submission document
-      const newSubmission = await WeeklySubmission.create({ data });
-  
-      // Respond with success message and the created submission
-      res.status(201).json({ message: "Weekly submission created successfully", submission: newSubmission });
-    } catch (error) {
-      console.error("Error creating weekly submission:", error);
-      res.status(500).json({ error: "Failed to create weekly submission" });
+        const { data, userName, projectData, comment } = req.body; // Destructure data, userName, projectData, and comment from request body
+        const weeklySubmission = await WeeklySubmission.create({ data, userName, projectData, comment }); // Create a new document with data, userName, projectData, and comment
+        res.status(201).json(weeklySubmission);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
-  });
+});
 
 
 
