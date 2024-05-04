@@ -14,6 +14,7 @@ import Maincomponent from './components/Maincomponent';
 import Profile from './components/Profile';
 import ProjectOverview from './components/ProjectOverview';
 import ReadMore from './components/ReadMore';
+import Projectsubmit from './components/Projectsubmit';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path={'/overview'} element={<ProjectOverview />}></Route>
         <Route path={'/projects'} element={<StudentProjects />}></Route>
         <Route path="/readmore/:projectId" element={<ReadMore />} />
+        <Route path="/projectsub" element={<Projectsubmit />} />
    </Routes>
     </div>
   );
