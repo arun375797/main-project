@@ -8,7 +8,7 @@ function App() {
   const [comments, setComments] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [daysSinceMount, setDaysSinceMount] = useState(85);
+  const [daysSinceMount, setDaysSinceMount] = useState(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
