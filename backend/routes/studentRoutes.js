@@ -3,6 +3,7 @@ const router = express.Router();
 const Student = require("../models/studentModel");
 const ChatMessage= require("../models/chatMessageModel");
 const WeeklySubmission = require("../models/weeklySubmissionSchema");
+const FormData = require ('../models/FormData')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -205,6 +206,22 @@ router.put('/chat-messages/:id', async (req, res) => {
     }
 });
 
+
+
+// routes submit
+router.post('/', async (req, res) => {
+    const formData = new FormData({
+      link: req.body.link,
+      comments: req.body.comments
+    });
+  
+    try {
+      const newFormData = await formData.save();
+      res.status(201).json(newFormData);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  });
 
 
 module.exports = router;

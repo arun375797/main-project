@@ -1,0 +1,13 @@
+.custom-bg {
+    
+    background-color:rgb(47, 47, 186); /* Light blue background color */
+    width: 100%;
+    height: 100;
+  }
+  
+  .form-label{
+    color: azure;
+  }
+  h1{
+    color: azure;
+  }

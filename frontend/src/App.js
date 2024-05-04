@@ -13,6 +13,7 @@ import StudentProjects from './components/StudentProjects';
 import Maincomponent from './components/Maincomponent';
 import Profile from './components/Profile';
 import ProjectOverview from './components/ProjectOverview';
+import Projectsubmit from './components/Projectsubmit'
 function App() {
   return (
     <div className="App">
@@ -30,6 +31,7 @@ function App() {
         <Route path={'/main'} element={<Maincomponent />}></Route>
         <Route path={'/profile'} element={<Profile />}></Route>
         <Route path={'/overview'} element={<ProjectOverview />}></Route>
+        <Route path={'/sub'} element={<Projectsubmit/>}></Route>
    </Routes>
     </div>
   );
