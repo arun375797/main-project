@@ -108,25 +108,38 @@ const StudentProjects = () => {
         console.log('Selected project:', project._id);
         console.log('User logged in:', user.name);
         console.log('User logged in:', user._id);
-
-        try {
-            const response = await axios.post('http://localhost:5000/api/studentProjects/add', {
-                projectId: project._id,
-                title: project.title,
-                studentId: user._id,
-                email: user.email,
-                name: user.name,
-                duration: project.duration,
-                teamSize: project.teamSize,
-            });
-            alert(`Project added to student: ${ response.data.title}`);
-            console.log('Project added to student:', response.data);
-            navigate('/main');
-        } catch (error) {
-            navigate('/main');
-            console.error('Error adding project:', error);
+    
+        // Check if the user already has a project selected
+        if (user.projectId) {
+            // User already has a project selected, show an alert
+            alert("You have already selected a project");
+        } else {
+            // User does not have a project selected, proceed with selecting the project
+    
+            // Check if projects array is empty
+          
+                try {
+                    const response = await axios.post('http://localhost:5000/api/studentProjects/add', {
+                        projectId: project._id,
+                        title: project.title,
+                        studentId: user._id,
+                        email: user.email,
+                        name: user.name,
+                        duration: project.duration,
+                        teamSize: project.teamSize,
+                    });
+                    alert(`Project added to student: ${response.data.title}`);
+                    console.log('Project added to student:', response.data);
+                    navigate('/main');
+                } catch (error) {
+                    navigate('/projects');
+                    console.error('Error adding project:', error);
+                    alert("you have already selected")
+                }
+           
         }
     };
+    
 
 
     const tokenrelease = () => {

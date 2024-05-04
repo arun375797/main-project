@@ -13,9 +13,12 @@ const studentProjectSchema = new mongoose.Schema({
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
-        required: true
+        required: true,
+        unique: true
     },
-    email: String,
+    email: {type:String,
+        unique: true
+    },
     name: String,
     duration: {
         type: Number,
