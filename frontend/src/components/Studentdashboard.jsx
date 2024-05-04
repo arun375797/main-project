@@ -130,6 +130,7 @@ const Studentdashboard = () => {
 
   const tokenrelease = () => {
     sessionStorage.removeItem('userToken');
+    sessionStorage.removeItem('currentUser');
   }
 
   return (

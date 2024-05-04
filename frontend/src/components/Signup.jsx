@@ -23,7 +23,7 @@ const Signup = () => {
   };
   
   const addHandler = () => {
-    console.log("clicked", users);
+    //console.log("clicked", users);
     axios.post("http://localhost:5000/api/student/register", users)
       .then((res) => {
         console.log(res);
@@ -32,6 +32,9 @@ const Signup = () => {
       })
       .catch((err) => {
         console.log(err);
+        alert(`User registration failed ${err}`)
+        navigate('/signup');
+        
       });
   };
 

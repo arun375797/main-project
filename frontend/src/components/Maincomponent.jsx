@@ -4,9 +4,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Mern from './Mern';
 import Profile from './Profile';
 import Projectdashboard from './Projectdashboard';
-import Chat from './Chat'; // Import the Chat component
+import Chat from './Chat'; 
 import ProjectOverview from './ProjectOverview';
-
 
 const MainComponent = () => {
     const [activeTool, setActiveTool] = useState('dashboard'); // Initial active tool
@@ -29,11 +28,11 @@ const MainComponent = () => {
             case 'overview':
                 return <ProjectOverview />;
             case 'weeksub':
-                return <Mern />;
+                return <Mern />;    //To be chnaged
             case 'discuss': 
                 return <Chat />;
             case 'prosub':
-                return <Mern />;
+                return <Mern />;    //To be chnaged
             // Add more cases for additional tools
             default:
                 return null;
