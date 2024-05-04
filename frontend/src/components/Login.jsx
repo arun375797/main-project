@@ -23,8 +23,10 @@ const Login = () => {
       .then((res) => {
         if (res.data.message === "Login success") {
           alert(res.data.message);
-          sessionStorage.setItem('userToken',res.data.token);
-          navigate("/project");
+          sessionStorage.setItem('userToken', res.data.token);
+          sessionStorage.setItem('currentUser', res.data.email);
+          console.log(user._id)
+          navigate("/projects");
           
         } else {
         alert('User login failed')

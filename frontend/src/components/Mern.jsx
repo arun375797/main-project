@@ -23,29 +23,29 @@ const Mern = () => {
     try {
       const currentDate = new Date();
       const currentDay = currentDate.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-  //       Sunday: 0
-  // Monday: 1
-  // Tuesday: 2
-  // Wednesday: 3
-  // Thursday: 4
-  // Friday: 5
-  // Saturday: 6
-  // const currentDay='Sun Apr 29 2024 21:43:20 GMT+0530 (India Standard Time)';
+      //       Sunday: 0
+      // Monday: 1
+      // Tuesday: 2
+      // Wednesday: 3
+      // Thursday: 4
+      // Friday: 5
+      // Saturday: 6
+      // const currentDay='Sun Apr 29 2024 21:43:20 GMT+0530 (India Standard Time)';
       // Check if it's Saturday (day 6) or Sunday (day 0)
       if (currentDay === 6 || currentDay === 0) {
         const response = await axios.post("http://localhost:5000/api/student/weekly-submission", { data: formData });
         console.log(response.data); // Log the response from the backend
       } else {
-       alert("Weekly submission is only allowed on weekends."); // Inform the user that submission is only allowed on weekends
+        alert("Weekly submission is only allowed on weekends."); // Inform the user that submission is only allowed on weekends
       }
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
-  
+
   return (
     <div
-    
+
       style={{
         display: "flex",
         justifyContent: "center",
@@ -54,8 +54,9 @@ const Mern = () => {
         background: "linear-gradient(130deg, #231a6f, #0f054c)", // Background gradient
       }}
     >
-      <div style={{ background: "#0f054c", flex: 1 }}>
-        {/* Content for the left side */}
+      {/* Content for the left side */}
+      {/* <div style={{ background: "#0f054c", flex: 1 }}>
+       
         <div style={{ height: "100vh", width: "300px" }}>
           <div
             style={{
@@ -65,26 +66,26 @@ const Mern = () => {
             }}
           >
             <Button color="secondary">Secondary</Button>
-            <br /> 
+            <br />
           </div>
-          
+
           <Button href="/chat">Discussion-Form</Button>
         </div>
-      </div>
+      </div> */}
 
       <div style={{ flex: 3 }}>
-      <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
-      <br></br>
-      <br />
-      <div style={{ marginLeft: "100px" }}>
-            <Accordion sx={{ width: "100%" }}>
+        <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
+        <br></br>
+        <br />
+        <div style={{ marginLeft: "100px" }}>
+          <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
               sx={{ fontSize: "1.2rem", backgroundColor: "#8a2be2", color: "#fff" }} // Increase font size and add background color
             >
-             Project Summary
+              Project Summary
             </AccordionSummary>
             <AccordionDetails>
               <div style={{ fontSize: "1.2rem" }}>
@@ -101,22 +102,22 @@ const Mern = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-            
-          <Accordion defaultExpanded sx={{ width: "100%"}}>
+
+          <Accordion defaultExpanded sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
               sx={{ fontSize: "1.2rem", backgroundColor: "#3f51b5", color: "#fff" }} // Increase font size and add background color
             >
-             Project Overview Document
+              Project Overview Document
             </AccordionSummary>
             <AccordionDetails>
               <div style={{ fontSize: "1.2rem" }}>
                 {" "}
                 {/* Increase font size */}
-           <a href="https://docs.google.com/document/d/1NFIpLm62qxZioa0gjIQVBszXldxytYklehKvAbrPyy4/edit?usp=sharing">Detailed documentation of the project must be provided in the pdf or document Format.
-</a> 
+                <a href="https://docs.google.com/document/d/1NFIpLm62qxZioa0gjIQVBszXldxytYklehKvAbrPyy4/edit?usp=sharing">Detailed documentation of the project must be provided in the pdf or document Format.
+                </a>
               </div>
             </AccordionDetails>
             <AccordionActions>
@@ -135,7 +136,7 @@ const Mern = () => {
             </AccordionSummary>
             <AccordionDetails>
               <div style={{ fontSize: "1.2rem" }}>
-               React, Node.js, Express, MongoDB
+                React, Node.js, Express, MongoDB
               </div>
             </AccordionDetails>
           </Accordion>
@@ -179,14 +180,14 @@ const Mern = () => {
 
 
 
-         <Accordion sx={{ width: "100%" }}>
+          <Accordion sx={{ width: "100%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
               sx={{ fontSize: "1.2rem", backgroundColor: "#03a9f4", color: "#fff" }} // Increase font size and add background color
             >
-             Reference materials
+              Reference materials
             </AccordionSummary>
             <AccordionDetails>
               <div style={{ fontSize: "1.2rem" }}>
@@ -202,38 +203,38 @@ const Mern = () => {
 
 
           <Accordion sx={{ width: "100%" }}>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1-content"
-        id="panel1-header"
-        sx={{ fontSize: "1.2rem", backgroundColor: "#f44336", color: "#fff" }} // Increase font size and add background color
-      >
-        Weekly Submission
-      </AccordionSummary>
-      <AccordionDetails>
-        <div style={{ fontSize: "1.2rem" }}>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="outlined-basic"
-              label="Outlined"
-              variant="outlined"
-              value={formData}
-              onChange={handleChange}
-            />
-            <Button variant="outlined" onClick={handleSubmit}>
-              Submit
-            </Button>
-          </Box>
-        </div>
-      </AccordionDetails>
-    </Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              sx={{ fontSize: "1.2rem", backgroundColor: "#f44336", color: "#fff" }} // Increase font size and add background color
+            >
+              Weekly Submission
+            </AccordionSummary>
+            <AccordionDetails>
+              <div style={{ fontSize: "1.2rem" }}>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    label="Outlined"
+                    variant="outlined"
+                    value={formData}
+                    onChange={handleChange}
+                  />
+                  <Button variant="outlined" onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Box>
+              </div>
+            </AccordionDetails>
+          </Accordion>
 
         </div>
       </div>

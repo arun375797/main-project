@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
+// route for sign up
 router.post('/register', async (req, res) => {
     try {
         const studentData = req.body;
@@ -19,6 +20,69 @@ router.post('/register', async (req, res) => {
         res.status(500).send({ error: "Failed to register student" });
     }
 });
+// // Authentication middleware
+// function isAuthenticated(req, res, next) {
+//     // Assuming the token is sent in the request headers
+//     const token = req.headers.authorization;
+//     if (!token) {
+//         req.userId = null;
+//         return next();
+//     }
+
+//     // Here you would typically verify the token
+//     // and extract the user ID from it
+//     try {
+//         const decoded = jwt.verify(token, 'studentapp');
+//         req.userId = decoded.id;
+//         next();
+//     } catch (error) {
+//         console.error("Error verifying token:", error);
+//         res.status(401).json({ message: 'Unauthorized' });
+//     }
+// }
+
+// // Route for fetching user details
+// router.get('/user', isAuthenticated, async (req, res) => {
+//     try {
+//         if (!req.userId) {
+//             return res.status(401).json({ message: 'Unauthorized' });
+//         }
+
+//         const student = await Student.findById(req.userId);
+//         if (!student) {
+//             return res.status(404).json({ message: "Student not found" });
+//         }
+//         res.json({ user: student });
+//     } catch (error) {
+//         console.error("Error fetching user details:", error);
+//         res.status(500).json({ error: "Failed to fetch user details" });
+//     }
+// });
+
+
+router.get('/user', async (req, res) => {
+    const { email } = req.query;
+
+    try {
+        // Query the database for a student with the provided email
+        const user = await Student.findOne({ email: email });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        return res.status(200).json(user);
+    } catch (error) {
+        // Handle errors
+        console.error("Error finding user by email:", error);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+module.exports = router;
+
+
+
 
 
 
@@ -40,7 +104,7 @@ router.post('/login', async (req, res) => {
         if (passwordMatch) {
             let payload = { email: email, pwd: password };
             let token = jwt.sign(payload, 'studentapp');
-            res.send({ message: 'Login success', token: token });
+            res.send({ message: 'Login success', token: token ,email:email});
         } else {
             res.json({ message: 'Login failed' });
         }
@@ -140,6 +204,7 @@ router.put('/chat-messages/:id', async (req, res) => {
         res.status(500).json({ error: "Failed to update chat message" });
     }
 });
+
 
 
 module.exports = router;
