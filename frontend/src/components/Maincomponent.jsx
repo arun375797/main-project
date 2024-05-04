@@ -6,6 +6,7 @@ import Profile from './Profile';
 import Projectdashboard from './Projectdashboard';
 import Chat from './Chat'; 
 import ProjectOverview from './ProjectOverview';
+import Projectsubmit from './Projectsubmit';
 
 const MainComponent = () => {
     const [activeTool, setActiveTool] = useState('dashboard'); // Initial active tool
@@ -32,7 +33,7 @@ const MainComponent = () => {
             case 'discuss': 
                 return <Chat />;
             case 'prosub':
-                return <Mern />;    //To be chnaged
+                return <Projectsubmit />;    //To be chnaged
             // Add more cases for additional tools
             default:
                 return null;
@@ -56,6 +57,7 @@ const MainComponent = () => {
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('dashboard')}>Materials</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('weeksub')}>Weekly Submission</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('discuss')}>Discussion Forum</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('prosub')}>Project Submission</button>
                     {/* Add more buttons for additional tools */}
                 </div>
             )}
