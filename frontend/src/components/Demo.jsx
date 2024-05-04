@@ -6,12 +6,61 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
+import { Box, TextField } from "@mui/material";
+import axios from "axios";
 const Demo = () => {
   const [selectedProject, setSelectedProject] = useState("project1");
-
+  const [formData, setFormData] = useState("");
+  const [lastSubmissionDate, setLastSubmissionDate] = useState(null);
   const handleChange = (event) => {
     setSelectedProject(event.target.value);
+  };
+
+  const handleChanges = (e) => {
+    setFormData(e.target.value);
+  };
+  const isSameWeek = (date1, date2) => {
+    const firstDate = new Date(date1);
+    const secondDate = new Date(date2);
+    const firstWeek = new Date(
+      firstDate.getFullYear(),
+      firstDate.getMonth(),
+      firstDate.getDate() - firstDate.getDay()
+    );
+    const secondWeek = new Date(
+      secondDate.getFullYear(),
+      secondDate.getMonth(),
+      secondDate.getDate() - secondDate.getDay()
+    );
+    return firstWeek.getTime() === secondWeek.getTime();
+  };
+  const handleSubmit = async () => {
+    try {
+      const currentDate = new Date();
+      const currentDay = currentDate.getDay(); // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+
+      // Check if it's Saturday (day 6) or Sunday (day 0)
+      if (currentDay === 6 || currentDay === 0) {
+        // Check if the last submission date is within the same week as the current date
+        if (lastSubmissionDate && isSameWeek(lastSubmissionDate, currentDate)) {
+          alert(
+            "You have already submitted this week. You can submit again next week."
+          );
+        } else {
+          const response = await axios.post(
+            "http://localhost:5000/api/student/weekly-submission",
+            { data: formData }
+          );
+          console.log(response.data); // Log the response from the backend
+          // Update the last submission date after successful submission
+          setLastSubmissionDate(currentDate);
+        }
+      } else {
+        alert("Weekly submission is only allowed on weekends."); // Inform the user that submission is only allowed on weekends
+      }
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
 
   const projects = {
@@ -191,6 +240,44 @@ const Demo = () => {
             <AccordionDetails>
               <div style={{ fontSize: "1.2rem" }}>
                 {projects[selectedProject].referenceMaterials}
+              </div>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion sx={{ width: "100%" }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              sx={{
+                fontSize: "1.2rem",
+                backgroundColor: "#f44336",
+                color: "#fff",
+              }} // Increase font size and add background color
+            >
+              Weekly Submission
+            </AccordionSummary>
+            <AccordionDetails>
+              <div style={{ fontSize: "1.2rem" }}>
+                <Box
+                  component="form"
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "25ch" },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    label="Outlined"
+                    variant="outlined"
+                    value={formData}
+                    onChange={handleChanges}
+                  />
+                  <Button variant="outlined" onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                </Box>
               </div>
             </AccordionDetails>
           </Accordion>
