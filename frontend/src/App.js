@@ -15,6 +15,8 @@ import Profile from './components/Profile';
 import ProjectOverview from './components/ProjectOverview';
 import ReadMore from './components/ReadMore';
 import Projectsubmit from './components/Projectsubmit';
+import WeeklySubmissionAccordion from './components/WeeklySubmissionAccordion';
+import QuizPage from './components/QuizPage';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Route path={'/projects'} element={<StudentProjects />}></Route>
         <Route path="/readmore/:projectId" element={<ReadMore />} />
         <Route path="/projectsub" element={<Projectsubmit />} />
+        <Route path="/weeksubmission" element={<WeeklySubmissionAccordion />} />
+        <Route path="/viva" element={<QuizPage/>} />
    </Routes>
     </div>
   );

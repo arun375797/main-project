@@ -7,6 +7,8 @@ import Projectdashboard from './Projectdashboard';
 import Chat from './Chat'; 
 import ProjectOverview from './ProjectOverview';
 import Projectsubmit from './Projectsubmit';
+import WeeklySubmissionForm from './WeeklySubmissionAccordion';
+import QuizPage from './QuizPage';
 
 const MainComponent = () => {
     const [activeTool, setActiveTool] = useState('dashboard'); // Initial active tool
@@ -29,11 +31,13 @@ const MainComponent = () => {
             case 'overview':
                 return <ProjectOverview />;
             case 'weeksub':
-                return <Mern />;    //To be chnaged
+                return <WeeklySubmissionForm />;    //To be chnaged
             case 'discuss': 
                 return <Chat />;
             case 'prosub':
                 return <Projectsubmit />;    //To be chnaged
+            case 'viva':
+                return <QuizPage />;    //To be chnaged
             // Add more cases for additional tools
             default:
                 return null;
@@ -45,19 +49,20 @@ const MainComponent = () => {
         <div>
             
         <div style={{ display: 'flex' }}>    
-            <div style={{ width: '50px', background: "#0f054c", padding: '10px' }}>
+            <div style={{ width: '50px', background: "#0f054c", padding: '10px',minHeight:'100vh' }}>
                 <button onClick={toggleToolbarVisibility} style={{ marginBottom: '10px', background: "#0f054c", border: 'none', width: '100%' }}>
                     <FontAwesomeIcon icon={faBars} style={{ color: '#ffffff' }} />
                 </button>
             </div>
             {isToolbarVisible && (
-                <div style={{ width: '250px', background: "#0f054c", padding: '10px' }}>
+                <div style={{ width: '250px', background: "#0f054c", padding: '10px' ,display:'flex',flexDirection:'column',gap:'70px',justifyContent:'center'}}>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('profile')}>Profile</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('overview')}>Project Overview</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('dashboard')}>Materials</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('weeksub')}>Weekly Submission</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('discuss')}>Discussion Forum</button>
                     <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('prosub')}>Project Submission</button>
+                    <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('viva')}>viva</button>
                     {/* Add more buttons for additional tools */}
                 </div>
             )}
