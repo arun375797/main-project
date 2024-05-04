@@ -13,6 +13,8 @@ import StudentProjects from './components/StudentProjects';
 import Maincomponent from './components/Maincomponent';
 import Profile from './components/Profile';
 import ProjectOverview from './components/ProjectOverview';
+import ReadMore from './components/ReadMore';
+
 function App() {
   return (
     <div className="App">
@@ -24,12 +26,14 @@ function App() {
     <Route path={'/dashboard'} element={<Studentdashboard/>}></Route>
     <Route path={'/mern'} element={<Mern/>}></Route>
         <Route path={'/project'} element={<Projectdashboard />}></Route>
-        <Route path={'/projects'} element={<StudentProjects />}></Route>
+        
         <Route path={'/demo'} element={<Demo />}></Route>
         <Route path={'/chat'} element={<Chat />}></Route>
         <Route path={'/main'} element={<Maincomponent />}></Route>
         <Route path={'/profile'} element={<Profile />}></Route>
         <Route path={'/overview'} element={<ProjectOverview />}></Route>
+        <Route path={'/projects'} element={<StudentProjects />}></Route>
+        <Route path="/readmore/:projectId" element={<ReadMore />} />
    </Routes>
     </div>
   );

@@ -12,12 +12,12 @@ import proImg5 from '../images/project5.jpg';
 import proImg6 from '../images/project1.jpg';
 
 const projectsOtherData = [
-    { image: proImg1, link: '/mern' },
-    { image: proImg2, link: '/demo' },
-    { image: proImg3, link: '/demo' },
-    { image: proImg4, link: '/demo' },
-    { image: proImg5, link: '/demo' },
-    { image: proImg6, link: '/demo' },
+    { image: proImg1, link: '/readmore' },
+    { image: proImg2, link: '/readmore' },
+    { image: proImg3, link: '/readmore' },
+    { image: proImg4, link: '/readmore' },
+    { image: proImg5, link: '/readmore' },
+    { image: proImg6, link: '/readmore' },
 ];
 const useStyles = makeStyles({
     root: {
@@ -132,9 +132,10 @@ const StudentProjects = () => {
                     console.log('Project added to student:', response.data);
                     navigate('/main');
                 } catch (error) {
-                    navigate('/projects');
-                    console.error('Error adding project:', error);
+                    
+                    console.error('Error selecting project:', error);
                     alert("you have already selected")
+                    navigate('/projects');
                 }
            
         }
@@ -144,6 +145,7 @@ const StudentProjects = () => {
 
     const tokenrelease = () => {
         sessionStorage.removeItem('userToken');
+        sessionStorage.removeItem('currentUser');
 
     }
 
@@ -182,9 +184,25 @@ const StudentProjects = () => {
                                     {project.title}
                                 </Typography>
                                 <Typography className={classes.description}>{project.description}</Typography>
-                                <Link component={RouterLink} to={projectsOtherData[index].link} className={classes.link}>
+                                {/* <Link component={RouterLink} to={projectsOtherData[index].link} className={classes.link}>
+                                    Read more
+                                </Link> */}
+                                {/* <Link component={RouterLink} to={{
+                                        pathname: projectsOtherData[index].link,
+                                        state: { projectData: project }
+                                    }}
+                                    className={classes.link}>
+                                    Read more
+                                </Link> */}
+                                <Link
+                                    component={RouterLink}
+                                    to={`${projectsOtherData[index].link}/${project._id}`} // Add project ID to the URL
+                                    className={classes.link}
+                                >
                                     Read more
                                 </Link>
+
+
                             </CardContent>
                         </Card>
                         <Button
