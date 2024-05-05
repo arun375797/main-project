@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { makeStyles } from "@material-ui/core/styles";
-import Grades from './Grades'; // Import the Grades component
 
 
-const useStyles = makeStyles((theme) => ({
-    // Define your styles here if needed
-}));
+
+
 
 const ProjectOverview = () => {
-    const classes = useStyles();
+   
     const [project, setProject] = useState(null);
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
@@ -20,7 +17,7 @@ const ProjectOverview = () => {
 
     // Retrieve email from sessionStorage
     const userEmail = sessionStorage.getItem('currentUser');
-    console.log("user user user ", userEmail);
+  
 
     useEffect(() => {
         // Fetch user data
@@ -28,7 +25,6 @@ const ProjectOverview = () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/student/user?email=${userEmail}`);
                 setUser(response.data);
-                console.log("what is this ",response.data.name);
                 setError(null);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -48,6 +44,7 @@ const ProjectOverview = () => {
                     // Assuming the response is an array and contains a single project object
                     if (response.data.length > 0) {
                         setProject(response.data[0]); // Set the first project object in the array
+                        console.log("user user user ", response.data[0].title);
                         setError(null);
                     } else {
                         setError('No project found');
