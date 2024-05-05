@@ -14,7 +14,7 @@ const ProjectOverview = () => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [selectedKeys, setSelectedKeys] = useState([]); // State to hold selected keys
-    const keyColors = ["#ff0000", "#00ff00", "#abaed6", "#ffff00", "#ff00ff", "#00ffff"]; // Different colors for keys
+    const keyColors = ["#ff7961", "#757ce8", "#f73378", "#dd33fa", "#af52bf", "#a2cf6e"];
 
     // Retrieve email from sessionStorage
     const userEmail = sessionStorage.getItem('currentUser');

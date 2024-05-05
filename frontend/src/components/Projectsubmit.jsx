@@ -45,6 +45,8 @@ const Projectsubmit = () => {
     }
 
     return (
+        <div style={{ border: '2px solid ', borderRadius: '5px', padding: '20px' }}>
+
         <div className="custom-bg">
             <div className="container mt-5 ">
                 <h1 className="mb-4">Project Submission</h1>
@@ -85,6 +87,8 @@ const Projectsubmit = () => {
                 </form>
             </div>
         </div>
+        </div>
+       
     );
 }
 
