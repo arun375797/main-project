@@ -3,6 +3,8 @@ import axios from "axios";
 import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
+import Grades from './Grades'; // Import the Grades component
+
 
 const useStyles = makeStyles((theme) => ({
     // Define your styles here if needed
@@ -18,6 +20,7 @@ const ProjectOverview = () => {
 
     // Retrieve email from sessionStorage
     const userEmail = sessionStorage.getItem('currentUser');
+    console.log("user user user ", userEmail);
 
     useEffect(() => {
         // Fetch user data
@@ -25,6 +28,7 @@ const ProjectOverview = () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/student/user?email=${userEmail}`);
                 setUser(response.data);
+                console.log("what is this ",response.data.name);
                 setError(null);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -119,55 +123,58 @@ const ProjectOverview = () => {
     };
 
 
-    return (
-        <div
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "100vh",
-                background: "linear-gradient(130deg, #231a6f, #0f054c)",
-            }}
-        >
-            <div style={{ flex: 3 }}>
-                <Typography color={'white'}>PROJECT OVERVIEW</Typography>
-                <br />
-                <br />
-                <div style={{ marginLeft: "100px" }}>
-                    {project && (
-                        <div>
-                            {Object.keys(project).map((key, index) => (
-                                <Accordion
-                                    key={key}
-                                    expanded={selectedKeys.includes(key)}
-                                    onChange={() => handleKeySelect(key)}
-                                    sx={{ width: "100%", marginBottom: "10px", backgroundColor: keyColors[index % keyColors.length] }} // Different color for each key
+// Inside the ProjectOverview component
+return (
+    <div
+        style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+            background: "linear-gradient(130deg, #231a6f, #0f054c)",
+        }}
+    >
+        <div style={{ flex: 3 }}>
+            <Typography color={'white'}>PROJECT OVERVIEW</Typography>
+            <br />
+            <br />
+            <div style={{ marginLeft: "100px" }}>
+                {project && (
+                    <div>
+                        {Object.keys(project).map((key, index) => (
+                            <Accordion
+                                key={key}
+                                expanded={selectedKeys.includes(key)}
+                                onChange={() => handleKeySelect(key)}
+                                sx={{ width: "100%", marginBottom: "10px", backgroundColor: keyColors[index % keyColors.length] }} // Different color for each key
+                            >
+                                <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    sx={{ backgroundColor: keyColors[index % keyColors.length] }} // Color for accordion heading
                                 >
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        sx={{ backgroundColor: keyColors[index % keyColors.length] }} // Color for accordion heading
-                                    >
-                                        <Typography variant="body1" style={{ color: 'white' }}>
-                                            {key.toUpperCase()}
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails style={{ backgroundColor: 'white' }}> {/* White background for accordion details */}
-                                        <Typography variant="body1" gutterBottom style={{ color: 'black', fontWeight: 'bold' }}>
-                                            {project[key] in projectsOtherData ? projectsOtherData[project[key]].description : project[key]}
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            ))}
-                        </div>
-                    )}
-                    {error && <Typography>Error: {error}</Typography>}
-                </div>
-            </div>
-            <div style={{ background: "red", flex: 1 }}>
-                {/* Content for the right side */}
+                                    <Typography variant="body1" style={{ color: 'white' }}>
+                                        {key.toUpperCase()}
+                                    </Typography>
+                                </AccordionSummary>
+                                <AccordionDetails style={{ backgroundColor: 'white' }}> {/* White background for accordion details */}
+                                    <Typography variant="body1" gutterBottom style={{ color: 'black', fontWeight: 'bold' }}>
+                                        {project[key] in projectsOtherData ? projectsOtherData[project[key]].description : project[key]}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        ))}
+                        
+                    </div>
+                )}
+                {error && <Typography>Error: {error}</Typography>}
             </div>
         </div>
-    );
+        <div style={{ background: "red", flex: 1 }}>
+            {/* Content for the right side */}
+        </div>
+    </div>
+);
+
 };
 
 export default ProjectOverview;
