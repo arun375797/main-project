@@ -73,12 +73,12 @@ const Mern = () => {
         </div>
       </div> */}
 
-      <div style={{ flex: 3 }}>
+      <div style={{ flex: 3  }}>
         <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
         <br></br>
         <br />
-        <div style={{ marginLeft: "100px" }}>
-          <Accordion sx={{ width: "100%" }}>
+        <div style={{ marginLeft: "100px"}}>
+          <Accordion sx={{ width: "100%"  }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
