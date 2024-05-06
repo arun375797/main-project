@@ -70,7 +70,7 @@ const Home = () => {
                       <a className="nav-link" href="#">
                         {" "}
                         <i className="fa fa-user" aria-hidden="true" />{" "}
-                        <Link to="/login">Login</Link>
+                        <Link underline="none"  to="/login">Login</Link>
                       </a>
                     </li>
                     <form className="form-inline">

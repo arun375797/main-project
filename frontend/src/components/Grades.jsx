@@ -68,7 +68,7 @@ const ProgressCard = () => {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ width: '80%' }}>
-                <Typography variant="h3" align="center" gutterBottom>{user && user.name} Grade Card</Typography>
+                <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color:'grey' }}>{user && user.name} Grade Card</Typography>
                 <MainHr />
                 <List>
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
@@ -80,23 +80,23 @@ const ProgressCard = () => {
                     </ListItem>
                     <SubHr />
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
-                    Intermediate Exam: {'8/10'}
+                    Intermediate Exam: {'8/20'}
                     </ListItem>
                     <SubHr />
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
-                    Viva: {'8/10'}
+                    Viva: {'8/20'}
                     </ListItem>
                     <SubHr />
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
-                    Final Submission: {'8/10'} 
+                    Final Submission: {'8/20'} 
                     </ListItem>
                     <SubHr />
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
-                    Final Exam: {'8/10'}
+                    Final Exam: {'8/20'}
                     </ListItem>
                     <SubHr />
                     <ListItem style={{ backgroundColor: "rgb(47 193 47)", fontWeight: 'bold', fontSize: '2.2rem' }} >
-                    Total Score: {'8/10'}
+                    Total Score: {'48/100'}
                     </ListItem>
                     <SubHr />
                 </List>
