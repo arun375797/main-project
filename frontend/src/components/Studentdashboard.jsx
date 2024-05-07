@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Link, Grid, Card, CardContent, Button } from '@material-ui/core';
-import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
+import {Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import proImg1 from '../images/project6.jpg';

@@ -2,7 +2,8 @@ import React from "react";
 import "../css/bootstrap.css";
 
 import "../css/style.css";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link } from "react-router-dom"; // Import useNavigate
+
 const Home = () => {
   return (
     <div>
@@ -34,7 +35,7 @@ const Home = () => {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className=""> </span>
+                  <span className=""> asfasf</span>
                 </button>
                 <div
                   className="collapse navbar-collapse"

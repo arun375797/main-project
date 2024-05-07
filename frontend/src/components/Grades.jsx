@@ -68,7 +68,11 @@ const ProgressCard = () => {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ width: '80%' }}>
-                <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color:'grey' }}>{user && user.name} Grade Card</Typography>
+                <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color:'grey' }}> Grade Card</Typography>
+                <SubHr />
+                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'grey' }}>user: {user && user.name} </Typography>
+                <SubHr />
+                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'grey' }}>project: {projectTitle} </Typography>
                 <MainHr />
                 <List>
                     <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
