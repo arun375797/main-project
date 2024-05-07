@@ -74,7 +74,10 @@ const Mern = () => {
       </div> */}
 
       <div style={{ flex: 3  }}>
-        <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
+      <Typography variant="h3" align="center" color="white">
+      PROJECT-DASHBOARD
+
+      </Typography>
         <br></br>
         <br />
         <div style={{ marginLeft: "100px"}}>

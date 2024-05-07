@@ -111,53 +111,66 @@ const QuizPage = () => {
     };
 
     return (
+        <div style={{ 
+            background: "linear-gradient(130deg, #231a6f, #0f054c)",
+      
+            minHeight: '100vh', 
+            padding: '20px' 
+          }}>
         <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             height="100vh"
         >
-            <Box
-                border={1}
-                borderRadius={16}
-                p={3}
-                textAlign="center"
-            >
+           <Box
+    border={3}
+    borderRadius={16}
+    p={3}
+    textAlign="center"
+    borderColor="white" // Set border color to white
+    color="white" // Set text color to white
+>
+    <Typography variant="h4" gutterBottom>
+        Question {currentQuestionIndex + 1}
+    </Typography>
+    <Typography variant="body1" gutterBottom>
+        {questions[currentQuestionIndex].question}
+    </Typography>
+    <FormControl component="fieldset">
+        <RadioGroup value={questions[currentQuestionIndex].selectedAnswer} onChange={handleAnswerChange}>
+            {questions[currentQuestionIndex].options.map((option, index) => (
+                <FormControlLabel key={index} value={option}  control={<Radio style={{ color: 'white' }} />} // Set radio button color to black
+                 label={option} />
+            ))}
+        </RadioGroup>
+    </FormControl>
+    <Box marginTop={2}>
+        {!showResult ? (
+            <Button variant="contained" onClick={handleNextQuestion} disabled={questions[currentQuestionIndex].selectedAnswer === null}>
+                Next
+            </Button>
+        ) : (
+            <Box>
                 <Typography variant="h4" gutterBottom>
-                    Question {currentQuestionIndex + 1}
+                    Quiz Completed
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                    {questions[currentQuestionIndex].question}
+                    Your Score: {score}/{questions.length}
                 </Typography>
-                <FormControl component="fieldset">
-                    <RadioGroup value={questions[currentQuestionIndex].selectedAnswer} onChange={handleAnswerChange}>
-                        {questions[currentQuestionIndex].options.map((option, index) => (
-                            <FormControlLabel key={index} value={option} control={<Radio />} label={option} />
-                        ))}
-                    </RadioGroup>
-                </FormControl>
-                <Box marginTop={2}>
-                    {!showResult ? (
-                        <Button variant="contained" onClick={handleNextQuestion} disabled={questions[currentQuestionIndex].selectedAnswer === null}>
-                            Next
-                        </Button>
-                    ) : (
-                        <Box>
-                            <Typography variant="h4" gutterBottom>
-                                Quiz Completed
-                            </Typography>
-                            <Typography variant="body1" gutterBottom>
-                                Your Score: {score}/{questions.length}
-                            </Typography>
-                            <Button variant="contained" onClick={handleSubmit}>
-                                Submit
-                            </Button>
-                        </Box>
-                    )}
-                </Box>
+                <Button variant="contained" onClick={handleSubmit}>
+                    Submit
+                </Button>
             </Box>
+        )}
+    </Box>
+</Box>
+
+      
         </Box>
-    );
+        </div>
+    )
+
 };
 
 export default QuizPage;
