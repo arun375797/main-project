@@ -126,13 +126,14 @@ const handleSendCommentMessage = async (index, commentMessage) => {
 
   return(
     <div style={{ 
+      background: "linear-gradient(130deg, #231a6f, #0f054c)",
 
       minHeight: '100vh', 
       padding: '20px' 
     }}>
         <div className="container mt-5">
-        <div style={{ border: '2px solid ', borderRadius: '5px', padding: '20px' }}>
-          <h3>Discussion-Form</h3>
+        <div style={{ border: '0px solid ', borderRadius: '5px', padding: '20px' }}>
+          <h3 style={{color:'white'}}>Discussion-Form</h3>
           <br />
           <div className="mb-3">
             <input 

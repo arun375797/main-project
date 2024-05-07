@@ -63,33 +63,177 @@ const MainComponent = () => {
                     </button>
                 </div>
                 {isToolbarVisible && (
-                    <div style={{ width: '250px', background: "#0f054c", padding: '10px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('profile')}>Profile</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('overview')}>Project Overview</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('dashboard')}>Materials</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('weeksub')}>Weekly Submission</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('discuss')}>Discussion Forum</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('prosub')}>Project Submission</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('viva')}>Viva</button>
-                        <button style={{ display: 'block', width: '100%', marginBottom: '5px', backgroundColor: '#ffffff', color: '#0f054c', padding: '10px', borderRadius: '5px', cursor: 'pointer' }} onClick={() => handleToolClick('grade')}>Grade Card</button>
-                        
-                        <Link
-                            component={RouterLink}
-                            to="/login"
-                            color="inherit"
-                            onClick={tokenRelease}
-                            style={{
-                                display: 'inline-block',
-                                borderRadius: '5px',
-                                backgroundColor: 'white',
-                                width: '230px', // Example width
-                                padding: '10px' // Example padding
-                            }}
-                        >
-                            Logout
-                        </Link>
-                        {/* Add more buttons for additional tools */}
-                    </div>
+                   <div style={{ width: '250px', background: "#0f054c", padding: '10px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
+                   <button
+                       style={{
+                           display: 'block',
+                           width: '100%',
+                           marginBottom: '5px',
+                           backgroundColor: '#ffffff',
+                           color: '#0f054c',
+                           padding: '10px',
+                           borderRadius: '5px',
+                           cursor: 'pointer',
+                           transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+                       }}
+                       onClick={() => handleToolClick('profile')}
+                       onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+                       onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+                   >
+                       Profile
+                   </button>
+                   <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('overview')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+        Project Overview
+    </button>     
+    <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('dashboard')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+       Material
+    </button>      <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('weeksub')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+       Weekly Submission
+    </button>     
+
+    <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('discuss')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+       DIscussion Forum
+    </button>     
+
+
+    <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('prosub')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+       Project Submission
+    </button>     
+    <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            border: '3px solid  #000000.', // Border added
+
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('viva')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+        Viva
+    </button>              
+    <button
+        style={{
+            display: 'block',
+            width: '100%',
+            marginBottom: '5px',
+            backgroundColor: '#ffffff',
+            color: '#0f054c',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onClick={() => handleToolClick('grade')}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; }} // Change background color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = '#ffffff'; }} // Revert back to original background color
+    >
+       Grades
+    </button>       
+    <Link
+        component={RouterLink}
+        to="/login"
+        color="inherit"
+        onClick={tokenRelease}
+        style={{
+            display: 'inline-block',
+            borderRadius: '5px',
+            backgroundColor: 'white',
+            width: '230px', // Example width
+            padding: '10px', // Example padding
+            textAlign: 'center',
+            textDecoration: 'none',
+            color: '#0f054c',
+            transition: 'background-color 0.3s ease-in-out, color 0.3s ease-in-out', // Transition for smooth hover effect
+        }}
+        onMouseEnter={(e) => { e.target.style.backgroundColor = '#107A7C'; e.target.style.color = '#ffffff'; }} // Change background color and text color on hover
+        onMouseLeave={(e) => { e.target.style.backgroundColor = 'white'; e.target.style.color = '#0f054c'; }} // Revert back to original background color and text color
+    >
+        Logout
+    </Link>
+</div>
                 )}
                 <div style={{ flex: 1, padding: '10px' }}>
                     {renderToolComponent()}

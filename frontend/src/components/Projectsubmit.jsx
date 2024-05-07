@@ -45,14 +45,18 @@ const Projectsubmit = () => {
     }
 
     return (
-        <div style={{ border: '2px solid ', borderRadius: '5px', padding: '20px' }}>
+        <div style={{ 
+      background: "linear-gradient(130deg, #231a6f, #0f054c)",
+      minHeight: '100vh', 
+      padding: '70px' 
+         }}>
 
         <div className="custom-bg">
             <div className="container mt-5 ">
-                <h1 className="mb-4">Project Submission</h1>
+                <h1 className="mb-4" style={{color:'white'}}>Project Submission</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="link" className="form-label">
+                        <label htmlFor="link" className="form-label" style={{color:'white'}}>
                             Link:
                         </label>
                         <input
@@ -65,7 +69,7 @@ const Projectsubmit = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="comments" className="form-label">
+                        <label htmlFor="comments" className="form-label" style={{color:'white'}}>
                             Comments:
                         </label>
                         <textarea

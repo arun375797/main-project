@@ -13,7 +13,7 @@ const ProjectOverview = () => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [selectedKeys, setSelectedKeys] = useState([]); // State to hold selected keys
-    const keyColors = ["#ff7961", "#757ce8", "#f73378", "#dd33fa", "#af52bf", "#a2cf6e"];
+    const keyColors = ["#D3D3D3 ", "#D3D3D3", " #D3D3D3 ", "#D3D3D3",  "#D3D3D3 ", "#D3D3D3"];
 
     // Retrieve email from sessionStorage
     const userEmail = sessionStorage.getItem('currentUser');
@@ -122,7 +122,9 @@ const ProjectOverview = () => {
 
 // Inside the ProjectOverview component
 return (
+    
     <div
+       
         style={{
             display: "flex",
             justifyContent: "center",
@@ -131,8 +133,9 @@ return (
             background: "linear-gradient(130deg, #231a6f, #0f054c)",
         }}
     >
+         <br /> <br />
         <div style={{ flex: 3 }}>
-            <Typography color={'white'}>PROJECT OVERVIEW</Typography>
+            <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
             <br />
             <br />
             <div style={{ marginLeft: "100px" }}>
@@ -149,9 +152,16 @@ return (
                                     expandIcon={<ExpandMoreIcon />}
                                     sx={{ backgroundColor: keyColors[index % keyColors.length] }} // Color for accordion heading
                                 >
-                                    <Typography variant="body1" style={{ color: 'white' }}>
-                                        {key.toUpperCase()}
-                                    </Typography>
+                                  <Typography 
+                                     variant="body1" 
+                                     style={{ color: 'black', cursor: 'pointer', textDecoration: 'none' }}
+                                      onMouseEnter={(e) => e.target.style.color = 'blue'}
+                                     onMouseLeave={(e) => e.target.style.color = 'black'}
+                               >
+                                       {key.toUpperCase()}
+                                       </Typography>
+
+
                                 </AccordionSummary>
                                 <AccordionDetails style={{ backgroundColor: 'white' }}> {/* White background for accordion details */}
                                     <Typography variant="body1" gutterBottom style={{ color: 'black', fontWeight: 'bold' }}>

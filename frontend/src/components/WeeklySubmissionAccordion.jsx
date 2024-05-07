@@ -106,21 +106,28 @@ const WeeklySubmissionForm = () => {
     
 
     return (
-        <div style={{ border: "1px solid #ccc", padding: "20px", width: "300px", margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <Typography variant="h6" gutterBottom>
+        <div style={{
+            background: "linear-gradient(130deg, #231a6f, #0f054c)",
+            minHeight: '100vh', 
+            padding: '100px'
+        }}>
+            <Typography variant="h4" gutterBottom style={{ color: 'white' }}>
                 Weekly Submission
             </Typography>
-            <div style={{ marginBottom: "20px", width: "100%" }}>
+            <br />
+            <div style={{ marginBottom: "30px", width: "100%" }}>
                 <TextField
                     id="outlined-basic"
-                    label="Outlined"
+                    label="Link"
                     variant="outlined"
                     value={formData}
                     onChange={handleChanges}
                     fullWidth
+                    InputLabelProps={{ style: { color: 'black' } }} // Added style for label
+                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
                 />
             </div>
-            <div style={{ marginBottom: "20px", width: "100%" }}>
+            <div style={{ marginBottom: "30px", width: "100%" }}>
                 <TextField
                     id="outlined-comment"
                     label="Comment"
@@ -128,15 +135,21 @@ const WeeklySubmissionForm = () => {
                     value={comment}
                     onChange={handleCommentChange}
                     fullWidth
+                    InputLabelProps={{ style: { color: 'black' } }} // Added style for label
+                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
                 />
             </div>
             <div style={{ width: "100%" }}>
-                <Button variant="outlined" onClick={handleSubmit} fullWidth>
+                <Button variant="contained" onClick={handleSubmit} fullWidth >
                     Submit
                 </Button>
             </div>
         </div>
-    );
+        
+
+
+
+    )
 };
 
 export default WeeklySubmissionForm;

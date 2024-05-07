@@ -51,6 +51,7 @@ const Projectdashboard = () => {
         alignItems: "center", // Center vertically
         minHeight: "100vh", // Full height of the viewport
         background: "linear-gradient(130deg, #231a6f, #0f054c)", // Background gradient
+
       }}
     >
       {/* Content for the left side */}
@@ -73,16 +74,25 @@ const Projectdashboard = () => {
       </div> */}
 
       <div style={{ flex: 3}}>
-        <Typography color={'white'}>PROJECT-DASHBOARD</Typography>
-        <br></br>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Typography variant="h5" align="center" color="white">
+        PROJECT-DASHBOARD
+    </Typography>
+  </div>
+       <br></br>
         <br />
-        <div style={{ marginLeft: "100px" }}>
-          <Accordion sx={{ width: "100%"  }}>
+        <div style={{ marginLeft: "130px" }}>
+          <Accordion sx={{ width: "110%"  }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#8a2be2", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000" ,
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+               }} // Increase font size and add background color
             >
               Project Summary
             </AccordionSummary>
@@ -102,12 +112,17 @@ const Projectdashboard = () => {
             </AccordionDetails>
           </Accordion>
 
-          <Accordion defaultExpanded sx={{ width: "100%" }}>
+          <Accordion defaultExpanded sx={{ width: "110%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#3f51b5", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000",
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+               }} // Increase font size and add background color
             >
               Project Overview Document
             </AccordionSummary>
@@ -124,12 +139,17 @@ const Projectdashboard = () => {
               <Button>Agree</Button>
             </AccordionActions>
           </Accordion>
-          <Accordion sx={{ width: "100%" }}>
+          <Accordion sx={{ width: "110%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#4caf50", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000" ,
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+              }} // Increase font size and add background color
             >
               Technologies Used
             </AccordionSummary>
@@ -139,12 +159,17 @@ const Projectdashboard = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ width: "100%" }}>
+          <Accordion sx={{ width: "110%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#ff9800", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000",
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+               }} // Increase font size and add background color
             >
               Team Size
             </AccordionSummary>
@@ -156,12 +181,17 @@ const Projectdashboard = () => {
               </div>
             </AccordionDetails>
           </Accordion>
-          <Accordion sx={{ width: "100%" }}>
+          <Accordion sx={{ width: "110%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#f44336", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000",
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+               }} // Increase font size and add background color
             >
               Duration
             </AccordionSummary>
@@ -179,12 +209,17 @@ const Projectdashboard = () => {
 
 
 
-          <Accordion sx={{ width: "100%" }}>
+          <Accordion sx={{ width: "110%" }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#03a9f4", color: "#fff" }} // Increase font size and add background color
+              sx={{ fontSize: "1.2rem", backgroundColor: "#D3D3D3", color: " #000000",
+              "&:hover": { 
+                backgroundColor: "#A9A9A9", // Change background color on hover 
+                color: "#FFFFFF"
+              }
+               }} // Increase font size and add background color
             >
               Reference materials
             </AccordionSummary>
@@ -195,42 +230,6 @@ const Projectdashboard = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
                 eget.
-              </div>
-            </AccordionDetails>
-          </Accordion>
-
-
-
-          <Accordion sx={{ width: "100%" }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-              sx={{ fontSize: "1.2rem", backgroundColor: "#f44336", color: "#fff" }} // Increase font size and add background color
-            >
-              Weekly Submission
-            </AccordionSummary>
-            <AccordionDetails>
-              <div style={{ fontSize: "1.2rem" }}>
-                <Box
-                  component="form"
-                  sx={{
-                    "& > :not(style)": { m: 1, width: "25ch" },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                    value={formData}
-                    onChange={handleChange}
-                  />
-                  <Button variant="outlined" onClick={handleSubmit}>
-                    Submit
-                  </Button>
-                </Box>
               </div>
             </AccordionDetails>
           </Accordion>
