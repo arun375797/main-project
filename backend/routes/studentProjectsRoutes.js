@@ -28,7 +28,7 @@ router.post('/add', verifytoken, async (req, res) => {
 });
 
 // Get all student projects
-router.get('/get', verifytoken, async (req, res) => {
+router.get('/get', async (req, res) => {
     try {
         const studentProjects = await StudentProject.find();
         res.json(studentProjects);

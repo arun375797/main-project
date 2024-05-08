@@ -37,7 +37,7 @@ router.get('/get', verifytoken, async (req, res) => {
 });
 
 // Read project by ID
-router.get('/:id', verifytoken, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
         res.json({ project });
