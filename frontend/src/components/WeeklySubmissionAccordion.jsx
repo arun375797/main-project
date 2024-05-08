@@ -78,7 +78,7 @@ const WeeklySubmissionForm = () => {
         try {
             const currentDate = new Date();
             const currentDay = currentDate.getDay();
-            if (currentDay === 6 || currentDay === 0) {
+            if (currentDay === 3 || currentDay === 0) {
                 if (lastSubmissionDate && isSameWeek(lastSubmissionDate, currentDate)) {
                     alert(
                         "You have already submitted this week. You can submit again next week."
@@ -94,6 +94,7 @@ const WeeklySubmissionForm = () => {
                         }
                     );
                     console.log(response.data);
+                    alert('submission sucessfull')
                     setLastSubmissionDate(currentDate);
                 }
             } else {
@@ -124,7 +125,7 @@ const WeeklySubmissionForm = () => {
                     onChange={handleChanges}
                     fullWidth
                     InputLabelProps={{ style: { color: 'black' } }} // Added style for label
-                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
+                    InputProps={{ style: { color: 'black', background: 'white' } }} // Added style for input text and background
                 />
             </div>
             <div style={{ marginBottom: "30px", width: "100%" }}>
@@ -136,7 +137,7 @@ const WeeklySubmissionForm = () => {
                     onChange={handleCommentChange}
                     fullWidth
                     InputLabelProps={{ style: { color: 'black' } }} // Added style for label
-                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
+                    InputProps={{ style: { color: 'black', background: 'white' } }} // Added style for input text and background
                 />
             </div>
             <div style={{ width: "100%" }}>

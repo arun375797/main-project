@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Box, TextField } from "@mui/material";
 import axios from "axios";
+import axiosInstance from "../axiosinterceptor";
 const Demo = () => {
   const [selectedProject, setSelectedProject] = useState("project1");
   const [formData, setFormData] = useState("");
@@ -47,7 +48,7 @@ const Demo = () => {
             "You have already submitted this week. You can submit again next week."
           );
         } else {
-          const response = await axios.post(
+          const response = await axiosInstance.post(
             "http://localhost:5000/api/student/weekly-submission",
             { data: formData }
           );

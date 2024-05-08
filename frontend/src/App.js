@@ -17,7 +17,7 @@ import ReadMore from './components/ReadMore';
 import Projectsubmit from './components/Projectsubmit';
 import WeeklySubmissionAccordion from './components/WeeklySubmissionAccordion';
 import QuizPage from './components/QuizPage';
-
+import PrivatrRoutes from './components/PrivatrRoutes';
 function App() {
   return (
     <div className="App">
@@ -26,6 +26,7 @@ function App() {
     <Route path={'/'} element={<Home/>}></Route>
     <Route path={'/login'} element={<Login/>}></Route>
     <Route path={'/signup'} element={<Signup/>}></Route>
+    <Route element = {<PrivatrRoutes/>}>
     <Route path={'/dashboard'} element={<Studentdashboard/>}></Route>
     <Route path={'/mern'} element={<Mern/>}></Route>
         <Route path={'/project'} element={<Projectdashboard />}></Route>
@@ -40,6 +41,7 @@ function App() {
         <Route path="/projectsub" element={<Projectsubmit />} />
         <Route path="/weeksubmission" element={<WeeklySubmissionAccordion />} />
         <Route path="/viva" element={<QuizPage/>} />
+        </Route>
    </Routes>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
+import axiosInstance from "../axiosinterceptor";
 
 
 
@@ -23,7 +23,7 @@ const ProjectOverview = () => {
         // Fetch user data
         const getUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/student/user?email=${userEmail}`);
+                const response = await axiosInstance.get(`http://localhost:5000/api/student/user?email=${userEmail}`);
                 setUser(response.data);
                 setError(null);
             } catch (error) {
@@ -40,7 +40,7 @@ const ProjectOverview = () => {
         const fetchProject = async () => {
             if (user && user._id) {
                 try {
-                    const response = await axios.get(`http://localhost:5000/api/studentProjects/id/${user._id}`);
+                    const response = await axiosInstance.get(`http://localhost:5000/api/studentProjects/id/${user._id}`);
                     // Assuming the response is an array and contains a single project object
                     if (response.data.length > 0) {
                         setProject(response.data[0]); // Set the first project object in the array
