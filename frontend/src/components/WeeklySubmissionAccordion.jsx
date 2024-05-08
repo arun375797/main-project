@@ -126,7 +126,7 @@ const WeeklySubmissionForm = () => {
                     onChange={handleChanges}
                     fullWidth
                     InputLabelProps={{ style: { color: 'black' } }} // Added style for label
-                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
+                    InputProps={{ style: { color: 'black', background: 'white' } }} // Added style for input text and background
                 />
             </div>
             <div style={{ marginBottom: "30px", width: "100%" }}>
@@ -138,7 +138,7 @@ const WeeklySubmissionForm = () => {
                     onChange={handleCommentChange}
                     fullWidth
                     InputLabelProps={{ style: { color: 'black' } }} // Added style for label
-                    InputProps={{ style: { color: 'white', background: 'white' } }} // Added style for input text and background
+                    InputProps={{ style: { color: 'black', background: 'white' } }} // Added style for input text and background
                 />
             </div>
             <div style={{ width: "100%" }}>
