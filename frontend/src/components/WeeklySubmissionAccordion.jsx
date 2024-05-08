@@ -78,7 +78,7 @@ const WeeklySubmissionForm = () => {
         try {
             const currentDate = new Date();
             const currentDay = currentDate.getDay();
-            if (currentDay === 6 || currentDay === 0) {
+            if (currentDay === 6     || currentDay === 0) {
                 if (lastSubmissionDate && isSameWeek(lastSubmissionDate, currentDate)) {
                     alert(
                         "You have already submitted this week. You can submit again next week."
@@ -94,6 +94,7 @@ const WeeklySubmissionForm = () => {
                         }
                     );
                     console.log(response.data);
+                    alert("you have sucessfully submitted the submission")
                     setLastSubmissionDate(currentDate);
                 }
             } else {
