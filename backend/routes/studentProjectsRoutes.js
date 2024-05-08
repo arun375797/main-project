@@ -1,9 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken')
+
 const StudentProject = require('../models/studentProjectModel');
 
+
+function verifytoken(req,res,next){
+    const token = req.headers.token;
+    try {
+        if(!token) throw 'unauthorized access';
+        let payload = jwt.verify(token,'studentapp');
+        if(!payload)throw 'unauthorized access';
+       // res.send(200).send(payload)
+        next()
+    } catch (error) {
+      res.status(401).send('caught in error')
+    }
+    }
 // Create a student project
-router.post('/add', async (req, res) => {
+router.post('/add', verifytoken, async (req, res) => {
     try {
         const studentProject = await StudentProject.create(req.body);
         res.status(201).json(studentProject);
@@ -13,7 +28,7 @@ router.post('/add', async (req, res) => {
 });
 
 // Get all student projects
-router.get('/get', async (req, res) => {
+router.get('/get', verifytoken, async (req, res) => {
     try {
         const studentProjects = await StudentProject.find();
         res.json(studentProjects);
@@ -23,7 +38,7 @@ router.get('/get', async (req, res) => {
 });
 
 // Get a specific student project by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifytoken, async (req, res) => {
     try {
         const studentProject = await StudentProject.findById(req.params.id);
         if (!studentProject) {
@@ -36,7 +51,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Get student projects by email
-router.get('/email/:email', async (req, res) => {
+router.get('/email/:email', verifytoken, async (req, res) => {
     const studentEmail = req.params.email;
     console.log("Requested Student Email:", studentEmail);
 
@@ -54,7 +69,7 @@ router.get('/email/:email', async (req, res) => {
     }
 });
 
-router.get('/id/:studentId', async (req, res) => {
+router.get('/id/:studentId', verifytoken, async (req, res) => {
     const studentId = req.params.studentId;
     console.log("Requested Student ID:", studentId);
 
@@ -75,7 +90,7 @@ router.get('/id/:studentId', async (req, res) => {
 
 
 // Update a student project
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', verifytoken, async (req, res) => {
     try {
         const studentProject = await StudentProject.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!studentProject) {
@@ -88,7 +103,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete a student project
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifytoken,async (req, res) => {
     try {
         const studentProject = await StudentProject.findByIdAndRemove(req.params.id);
         if (!studentProject) {

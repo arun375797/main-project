@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/projectModel');
+const jwt = require('jsonwebtoken');
 
+
+function verifytoken(req,res,next){
+    const token = req.headers.token;
+    try {
+        if(!token) throw 'unauthorized access';
+        let payload = jwt.verify(token,'studentapp');
+        if(!payload)throw 'unauthorized access';
+       // res.send(200).send(payload)
+        next()
+    } catch (error) {
+      res.status(401).send('caught in error')
+    }
+    }
 // Create a project
-router.post('/add', async (req, res) => {
+router.post('/add',verifytoken, async (req, res) => {
     try {
         const project = await Project.create(req.body);
         res.status(201).json({ project });
@@ -13,7 +27,7 @@ router.post('/add', async (req, res) => {
 });
 
 // Read all projects
-router.get('/get', async (req, res) => {
+router.get('/get', verifytoken, async (req, res) => {
     try {
         const projects = await Project.find();
         res.json({ projects });
@@ -23,7 +37,7 @@ router.get('/get', async (req, res) => {
 });
 
 // Read project by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifytoken, async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
         res.json({ project });
@@ -33,7 +47,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update a project
-router.put('/:id', async (req, res) => {
+router.put('/:id', verifytoken, async (req, res) => {
     try {
         const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json({ project });
@@ -43,7 +57,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a project
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifytoken, async (req, res) => {
     try {
         await Project.findByIdAndDelete(req.params.id);
         res.status(204).send();
