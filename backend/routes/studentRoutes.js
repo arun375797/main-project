@@ -8,10 +8,22 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 router.use(express.json());
+function verifytoken(req,res,next){
+    const token = req.headers.token;
+    try {
+        if(!token) throw 'unauthorized access';
+        let payload = jwt.verify(token,'studentapp');
+        if(!payload)throw 'unauthorized access';
+       // res.send(200).send(payload)
+        next()
+    } catch (error) {
+      res.status(401).send('caught in error')
+    }
+    }
 router.use(express.urlencoded({ extended: true }));
 
 // route for sign up
-router.post('/register', async (req, res) => {
+router.post('/register', verifytoken, async (req, res) => {
     try {
         const studentData = req.body;
         const newStudent = await Student.create(studentData);
@@ -61,7 +73,7 @@ router.post('/register', async (req, res) => {
 // });
 
 
-router.get('/user', async (req, res) => {
+router.get('/user', verifytoken, async (req, res) => {
     const { email } = req.query;
 
     try {
@@ -114,7 +126,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ error: "Failed to login" });
     }
 });
-router.post('/weekly-submission', async (req, res) => {
+router.post('/weekly-submission', verifytoken , async (req, res) => {
     try {
         const { data, userName, projectData, comment } = req.body; // Destructure data, userName, projectData, and comment from request body
         const weeklySubmission = await WeeklySubmission.create({ data, userName, projectData, comment }); // Create a new document with data, userName, projectData, and comment
@@ -129,7 +141,7 @@ router.post('/weekly-submission', async (req, res) => {
 
 
 // Route to fetch all chat messages
-router.get('/chat-messages', async (req, res) => {
+router.get('/chat-messages', verifytoken, async (req, res) => {
     try {
         const chatMessages = await ChatMessage.find();
         res.status(200).json(chatMessages);
@@ -140,7 +152,7 @@ router.get('/chat-messages', async (req, res) => {
 });
 
 // Route to add a new chat message
-router.post('/chat-messages', async (req, res) => {
+router.post('/chat-messages',verifytoken, async (req, res) => {
     try {
         const { message, sender } = req.body;
         const newChatMessage = await ChatMessage.create({ message, senderName: sender.name });
@@ -150,7 +162,7 @@ router.post('/chat-messages', async (req, res) => {
         res.status(500).json({ error: "Failed to create chat message" });
     }
 });
-router.get('/chat-messages', async (req, res) => {
+router.get('/chat-messages', verifytoken, async (req, res) => {
     try {
         const chatMessages = await ChatMessage.find();
         // Map over chatMessages and transform each message object to include sender's name
@@ -176,7 +188,7 @@ router.get('/chat-messages', async (req, res) => {
 });
 
 // Route to add a comment to a chat message
-router.post('/chat-messages/:id/comments', async (req, res) => {
+router.post('/chat-messages/:id/comments', verifytoken, async (req, res) => {
     try {
         const { id } = req.params;
         const { comment, sender } = req.body;
@@ -194,7 +206,7 @@ router.post('/chat-messages/:id/comments', async (req, res) => {
 });
 
 // Route to delete a chat message by ID
-router.delete('/chat-messages/:id', async (req, res) => {
+router.delete('/chat-messages/:id', verifytoken,async (req, res) => {
     try {
         const { id } = req.params;
         // Find the chat message by ID and delete it
@@ -209,7 +221,7 @@ router.delete('/chat-messages/:id', async (req, res) => {
     }
 });
 // Route to update a chat message
-router.put('/chat-messages/:id', async (req, res) => {
+router.put('/chat-messages/:id', verifytoken, async (req, res) => {
     try {
         const { id } = req.params;
         const { message } = req.body;
@@ -225,7 +237,7 @@ router.put('/chat-messages/:id', async (req, res) => {
 });
 
 // routes submit
-router.post('/projectsub', async (req, res) => {
+router.post('/projectsub', verifytoken, async (req, res) => {
     const formData = new FormData({
       link: req.body.link,
       comments: req.body.comments

@@ -3,6 +3,7 @@
     import { AppBar, Toolbar, Typography, Link, Grid, Card, CardContent, Button } from '@material-ui/core';
     import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
     import axios from 'axios';
+    import axiosInstance from '../axiosinterceptor';
 
     import proImg1 from '../images/project6.jpg';
     import proImg2 from '../images/project2.jpg';
@@ -75,7 +76,7 @@
 
         const getUser = async (email) => {
             try {
-                const user = await axios.get(`http://localhost:5000/api/student/user?email=${email}`);
+                const user = await axiosInstance.get(`http://localhost:5000/api/student/user?email=${email}`);
                 console.log(user.data)
                 setUser(user.data);
                 setError(null);
@@ -92,7 +93,7 @@
             // Fetch projects from backend when component mounts
             const fetchProjects = async () => {
                 try {
-                    const response = await axios.get('http://localhost:5000/api/project/get');
+                    const response = await axiosInstance.get('http://localhost:5000/api/project/get');
                     setProjects(response.data.projects);
                 } catch (error) {
                     console.error('Error fetching projects:', error);
@@ -119,7 +120,7 @@
                 // Check if projects array is empty
             
                     try {
-                        const response = await axios.post('http://localhost:5000/api/studentProjects/add', {
+                        const response = await axiosInstance.post('http://localhost:5000/api/studentProjects/add', {
                             projectId: project._id,
                             title: project.title,
                             studentId: user._id,

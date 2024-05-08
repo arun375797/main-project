@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import axiosInstance from '../axiosinterceptor';
 
 const WeeklySubmissionForm = () => {
     const [formData, setFormData] = useState("");
@@ -16,7 +17,7 @@ const WeeklySubmissionForm = () => {
             const userEmail = sessionStorage.getItem("currentUser");
             if (userEmail) {
                 try {
-                    const response = await axios.get(
+                    const response = await axiosInstance.get(
                         `http://localhost:5000/api/student/user?email=${userEmail}`
                     );
                     setUser(response.data);
@@ -33,7 +34,7 @@ const WeeklySubmissionForm = () => {
         const fetchProject = async () => {
             if (user && user._id) {
                 try {
-                    const response = await axios.get(`http://localhost:5000/api/studentProjects/id/${user._id}`);
+                    const response = await axiosInstance.get(`http://localhost:5000/api/studentProjects/id/${user._id}`);
                     // Assuming the response is an array and contains a single project object
                     if (response.data.length > 0) {
                         setProject(response.data[0]); // Set the first project object in the array
@@ -84,7 +85,7 @@ const WeeklySubmissionForm = () => {
                         "You have already submitted this week. You can submit again next week."
                     );
                 } else {
-                    const response = await axios.post(
+                    const response = await axiosInstance.post(
                         "http://localhost:5000/api/student/weekly-submission",
                         {
                             data: formData,
