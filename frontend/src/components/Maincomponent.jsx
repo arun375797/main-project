@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navigate, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Link } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Profile from './Profile';
 import Projectdashboard from './Projectdashboard';
@@ -16,6 +18,19 @@ import Grades from './Grades';
 const MainComponent = () => {
     const [activeTool, setActiveTool] = useState('dashboard'); // Initial active tool
     const [isToolbarVisible, setIsToolbarVisible] = useState(true);
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    console.log('what is the value',matches);
+
+    useEffect(()=>{
+        if (matches) {
+            setIsToolbarVisible(true)
+        }else{
+            setIsToolbarVisible(false)
+        }
+    },[matches])
+
 
     const handleToolClick = (tool) => {
         setActiveTool(tool);
