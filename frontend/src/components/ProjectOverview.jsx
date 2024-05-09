@@ -136,7 +136,7 @@ return (
         }}
     >
      
-        <div style={{ flex: 3, padding:'40px',backgroundColor:'red' }}>
+        <div style={{ flex: 3, padding:'40px' }}>
             <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
             <br />
             <br />
