@@ -42,7 +42,7 @@ const Profile = () => {
         <div style={{ backgroundColor: '#231a6f', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Typography variant="h5" component="h2" gutterBottom style={{ color: '#ffffff', marginBottom: '20px' }}>
-                    Welcome to your profile {user && user.name} !!!
+                    Welcome to your profile {user && user.name.toUpperCase()} !!!
                 </Typography>
                 <Card sx={{ backgroundColor: '#0f054c', color: 'white', width: 700, marginBottom: '20px', borderRadius: '20px' }}>
                     <CardContent>
@@ -59,7 +59,7 @@ const Profile = () => {
                                 <img src={getIcon(user.gender)} alt="User Icon" style={{ width: 100, height: 100, borderRadius: '50%', marginBottom: 20 }} />
 
                                 <Typography variant="h5" component="h2" gutterBottom style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-                                    Name :  {user.name}
+                                    Name :  {user.name.toUpperCase()}
                                 </Typography>
                                 <Typography variant="body1" component="p" gutterBottom style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
                                     Email : {user.email}
