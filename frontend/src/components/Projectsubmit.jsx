@@ -120,7 +120,7 @@ const Projectsubmit = () => {
                         <button
                             type="submit"
                             className="btn btn-primary"
-                            disabled={loading || daysUntilEnd > 90 || submitted} // Disable if loading, daysUntilEnd > 83, or already submitted
+                            disabled={loading || daysUntilEnd > 83 || submitted} // Disable if loading, daysUntilEnd > 83, or already submitted
                         >
                             {loading ? 'Submitting...' : 'Submit'}
                         </button>

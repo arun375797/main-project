@@ -73,7 +73,7 @@ router.post('/register', verifytoken, async (req, res) => {
 // });
 
 
-router.get('/user', verifytoken, async (req, res) => {
+router.get('/user', async (req, res) => {
     const { email } = req.query;
 
     try {

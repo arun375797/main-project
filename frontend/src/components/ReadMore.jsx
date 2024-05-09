@@ -28,7 +28,7 @@ const ReadMore = () => {
     }, [projectId]);
 
     return (
-        <div>
+        <div style={{background:" #0f054c",minHeight:'100vh'}}>
             <br /><br /><br />
         <Box display="flex" justifyContent="center" marginTop="60px">
             <Card sx={{ width: '60%', margin: 'auto' }}>
