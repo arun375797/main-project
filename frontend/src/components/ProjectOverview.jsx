@@ -135,8 +135,8 @@ return (
             background: "linear-gradient(130deg, #231a6f, #0f054c)",
         }}
     >
-         <br /> <br />
-        <div style={{ flex: 3, padding:'40px' }}>
+     
+        <div style={{ flex: 3, padding:'40px',backgroundColor:'red' }}>
             <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
             <br />
             <br />
