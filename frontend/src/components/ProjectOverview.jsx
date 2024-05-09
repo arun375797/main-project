@@ -128,6 +128,7 @@ return (
        
         style={{
             display: "flex",
+            flexDirection:"column",
             justifyContent: "center",
             alignItems: "center",
             minHeight: "100vh",
@@ -135,11 +136,11 @@ return (
         }}
     >
          <br /> <br />
-        <div style={{ flex: 3 }}>
+        <div style={{ flex: 3, padding:'40px' }}>
             <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
             <br />
             <br />
-            <div style={{ marginLeft: "100px" }}>
+            <div style={{  }}>
                 {project && (
                     <div>
                         {Object.keys(project).map((key, index) => (
