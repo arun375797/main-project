@@ -67,43 +67,43 @@ const Grades = () => {
 
 
     return (
-        <Box sx={{ height:'100vh',display: 'flex', justifyContent: 'center',backgroundColor:"rgb(33 24 108)" }}>
+        <Box sx={{ minHeight:'100vh',display: 'flex', justifyContent: 'center',backgroundColor:"rgb(33 24 108)",padding:'20px' }}>
             <Box sx={{ width: '80%' }}>
-            <br />
-            <div style={{border:'3px solid white',padding:'40px',borderRadius:"20px"}}>
+            
+            <div style={{border:'3px solid white',padding:'20px',borderRadius:"20px"}}>
 
-                <Typography variant="h3" align="center" gutterBottom style={{ fontWeight: 'bold', color:'white' }}> Grade Card</Typography>
+                <Typography  align="center" gutterBottom style={{ fontWeight: 'bold', color:'white', fontSize: window.innerWidth <= 768 ? "2rem" : "3rem" }}> Grade Card</Typography>
                 <SubHr />
-                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'white' }}>Student Name: {user && user.name} </Typography>
+                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'white', fontSize: window.innerWidth <= 768 ? "1rem" : "2rem" }}>Student Name: {user && user.name} </Typography>
                 <SubHr />
-                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'white' }}>Student Project: {projectTitle} </Typography>
+                <Typography variant="h6" align="left" gutterBottom style={{ fontWeight: 'bold', color:'white', fontSize: window.innerWidth <= 768 ? "1rem" : "2rem" }}>Student Project: {projectTitle} </Typography>
                 <MainHr />
                 <List>
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                         Application Process Assignment 1: {'8/10'}
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                     Application Process Assignment 2: {'8/10'}
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                     Intermediate Exam: {'8/20'}
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                     Viva: {'8/20'}
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                     Final Submission: {'8/20'} 
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: '1.2rem' }} >
+                    <ListItem style={{ backgroundColor: '#f0f0f0', fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1rem" : "1.2rem"  }} >
                     Final Exam: {'8/20'}
                     </ListItem>
                     <SubHr />
-                    <ListItem style={{ backgroundColor: "#87CEEB", fontWeight: 'bold', fontSize: '2.2rem' }} >
+                    <ListItem style={{ backgroundColor: "#87CEEB", fontWeight: 'bold', fontSize: window.innerWidth <= 768 ? "1.5rem" : "2.2rem"  }} >
                     Total Score: {'48/100'}
                     </ListItem>
                     <SubHr />

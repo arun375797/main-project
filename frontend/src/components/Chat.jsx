@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import axiosInstance from "../axiosinterceptor";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { Typography, List, ListItem, ListItemText, Box } from '@mui/material';
+
 const Chat = () => {
   const [chatMessage, setChatMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
@@ -127,100 +130,85 @@ const handleSendCommentMessage = async (index, commentMessage) => {
   return(
     <div style={{ 
       background: "linear-gradient(130deg, #231a6f, #0f054c)",
-
-      minHeight: '100vh', 
-      padding: '20px' 
     }}>
-        <div className="container mt-5">
-        <div style={{ border: '0px solid ', borderRadius: '5px', padding: '20px' }}>
-          <h3 style={{color:'white'}}>Discussion-Form</h3>
-          <br />
-          <div className="mb-3">
-            <input 
-              type="text" 
-              className="form-control" 
-              placeholder="Type your message" 
+        <div style={{padding:"20px"}}>
+        <div style={{ border: '0px solid ', borderRadius: '5px'}}>
+          <Typography variant="h5" style={{color:'white',marginBottom:'20px'}}>Discussion-Form</Typography>
+        
+          <div style={{padding:'20px'}} >
+            <TextField
+              variant="outlined"
+              placeholder="Type your message"
               value={chatMessage} 
               onChange={handleChatMessageChange} 
+              fullWidth
+              sx={{backgroundColor:'white',border: '1px solid ',borderRadius: '5px'}}
             />
-            <button className="btn btn-primary mt-2" onClick={handleSendChatMessage}>📝 Ask Query</button>
+            <Button variant="contained" onClick={handleSendChatMessage} style={{marginTop: '10px'}}>📝 Ask Query</Button>
           </div>
-          <ul className="list-group">
-          {chatHistory.map((message, index) => (
-  <li key={index} className="list-group-item d-flex justify-content-between align-items-center"style={{ border:"2px solid black",marginTop:"10px",padding:'15 px'}}>
-    <div>
-    {message.senderName && (
-        <>
-          <strong>{message.senderName}</strong>: 
-        </>
-      )}
-      {message.message}
-      <ul className="list-group mt-2" >
-        {message.comments.map((comment, commentIndex) => (
-          <li key={`${index}_${commentIndex}`} className="list-group-item bg-light">
-            {comment.text}
-            {comment.senderName && (
-              <strong className="ms-2 text-muted">-{comment.senderName}</strong>
-            )}
-        
-          </li>
-        ))}
-                  </ul>
-                </div>  
-                <div>
-                  <button className="btn btn-primary me-2" onClick={() => handleCommentButtonClick(index)}>
-                    &#128172; Add Comment
-                  </button>
+          <List sx={{}} >
+            {chatHistory.map((message, index) => (
+              <ListItem  key={index} style={{ border: "2px solid black",paddingTop: "10px", padding: '10px'}}>
+                <div style={{  backgroundColor:'white',width:'100%',padding:'10px' }}>
+                  {message.senderName && (
+                    <>
+                      <Typography variant="subtitle1" style={{fontWeight: 'bold', marginBottom: '5px'}}>
+                        {message.senderName}:
+                      </Typography>
+                    </>
+                  )}
+                  <ListItemText style={{}} primary={message.message} />
+                  <List style={{}}>
+                    {message.comments.map((comment, commentIndex) => (
+                      <ListItem key={`${index}_${commentIndex}`} style={{ backgroundColor: 'lightgray' }}>
+                        <ListItemText primary={comment.text} />
+                        {comment.senderName && (
+                          <ListItemText secondary={`-${comment.senderName}`} />
+                        )}
+                      </ListItem>
+                    ))}
+                  </List>
+                  {/* edited from here */}
+                  <Box sx={{}}>
+                  <Box sx={{display: window.innerWidth <= 768 ?  'grid' : 'flex', gap:1,justifyContent:'center'}}>
+                  <Button variant="contained" onClick={() => handleCommentButtonClick(index)}>💬 Add comment</Button>
                   {index === editIndex ? (
-                    <div className="input-group">
-                      <input 
-                        type="text" 
-                        className="form-control" 
-                        value={editMessage.message} 
+                    <div style={{ marginTop: '10px' }}>
+                      <TextField
+                        variant="outlined"
+                        value={editMessage.message}
                         onChange={(event) => setEditMessage(event.target.value)} 
+                        style={{ marginRight: '5px' }}
                       />
-                      <button className="btn btn-success" onClick={() => handleSaveEdit(index)}>
-                        &#128190; Save
-                      </button>
+                      <Button variant="contained" onClick={() => handleSaveEdit(index)} style={{ backgroundColor: 'green' }}>💾 Save</Button>
                     </div>
                   ) : (
-                    <button className="btn btn-secondary" onClick={() => handleEditMessage(index, message)}>
-                      &#9998; Edit
-                    </button>
+                    <Button variant="contained" onClick={() => handleEditMessage(index, message)} style={{ backgroundColor: 'green' }}>✏️ Edit</Button>
                   )}
-                  <button className="btn btn-danger" onClick={() => handleDeleteMessage(index)}>
-                    &#128465; Delete
-                  </button>
-                </div>
+                  <Button variant="contained" onClick={() => handleDeleteMessage(index)} style={{ backgroundColor: 'red' }}>🗑️ Delete</Button>
+                </Box>
+                </Box>
                 {showCommentField[index] && (
-                  <div className="mt-2">
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      placeholder="Add a comment" 
+                  <div style={{ marginTop: '10px',width:'100%',  }}>
+                    <TextField
+                      variant="outlined"
+                      placeholder="Add a comment"
                       value={commentMessage} 
                       onChange={handleCommentMessageChange} 
+                      style={{ marginRight: '5px' }}
                     />
-                    <button className="btn btn-primary mt-2" onClick={() => handleSendCommentMessage(index, commentMessage)}> &#10133; ADD</button>
+                    <Button variant="contained" onClick={() => handleSendCommentMessage(index, commentMessage)} style={{ backgroundColor: 'blue' }}>➡️ ADD</Button>
                   </div>
                 )}
-                
-              </li>
-                  
+                </div>
+
+              </ListItem>
             ))}
-          </ul>
-          
+          </List>
         </div>
       </div>
     </div>
   );
 };
+
 export default Chat;
-
-
-
-
-
-
-
-

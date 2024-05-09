@@ -85,7 +85,7 @@ const Projectsubmit = () => {
         <div style={{ 
             background: "linear-gradient(130deg, #231a6f, #0f054c)",
             minHeight: '100vh', 
-            padding: '70px' 
+            padding: '40px' 
         }}>
             <div className="custom-bg">
                 <div className="container mt-5 ">
