@@ -111,7 +111,7 @@ const WeeklySubmissionForm = () => {
         <div style={{
             background: "linear-gradient(130deg, #231a6f, #0f054c)",
             minHeight: '100vh', 
-            padding: '100px'
+            padding: '40px'
         }}>
             <Typography variant="h4" gutterBottom style={{ color: 'white' }}>
                 Weekly Submission
