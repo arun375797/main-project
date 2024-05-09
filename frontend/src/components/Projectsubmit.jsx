@@ -40,6 +40,7 @@ const Projectsubmit = () => {
                         const today = new Date();
                         const differenceInDays = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
                         setDaysUntilEnd(differenceInDays);
+                        console.log(differenceInDays)
                         setError(null);
                         // Check if project has been submitted
                         if (response.data[0].submitted) {
@@ -50,7 +51,7 @@ const Projectsubmit = () => {
                     }
                 } catch (error) {
                     console.error('Error fetching project:', error);
-                    setError('Error fetching project');
+                    setError('Project not selected');
                 }
             }
         };
@@ -70,6 +71,7 @@ const Projectsubmit = () => {
             console.log(response.data);
             setError('');
             setSubmitted(true); // Mark project as submitted
+            alert("you have sucessfully submitted the submission")
         } catch (error) {
             console.error('Error submitting data:', error);
             setError('Error submitting data. Please try again.');
