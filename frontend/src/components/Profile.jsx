@@ -40,11 +40,11 @@ const Profile = () => {
 
     return (
         <div style={{ backgroundColor: '#231a6f', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',padding:'20px' }}>
                 <Typography variant="h5" component="h2" gutterBottom style={{ color: '#ffffff', marginBottom: '20px' }}>
                     Welcome to your profile {user && user.name} !!!
                 </Typography>
-                <Card sx={{ backgroundColor: '#0f054c', color: 'white', width: 700, marginBottom: '20px', borderRadius: '20px' }}>
+                <Card sx={{ backgroundColor: '#0f054c', color: 'white', width: '100%', marginBottom: '20px', borderRadius: '20px' }}>
                     <CardContent>
                         <Typography variant="h4" component="h1" gutterBottom style={{ color: '#ffffff', marginBottom: '20px' }}>
                             P R O F I L E
@@ -52,7 +52,7 @@ const Profile = () => {
                         
                     </CardContent>
                 </Card>
-                <Card sx={{ backgroundColor: '#2d1d94', color: 'white', width: 700, borderRadius: '20px' }}>
+                <Card sx={{ backgroundColor: '#2d1d94', color: 'white', width: '100%', borderRadius: '20px' }}>
                     <CardContent>
                         {user ? (
                             <>
