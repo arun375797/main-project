@@ -3,21 +3,15 @@ import axios from "axios";
 import { Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-
-
-
-
 const ProjectOverview = () => {
-   
     const [project, setProject] = useState(null);
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [selectedKeys, setSelectedKeys] = useState([]); // State to hold selected keys
-    const keyColors = ["#D3D3D3 ", "#D3D3D3", " #D3D3D3 ", "#D3D3D3",  "#D3D3D3 ", "#D3D3D3"];
+    const keyColors = ["#D3D3D3 ", "#D3D3D3", " #D3D3D3 ", "#D3D3D3", "#D3D3D3 ", "#D3D3D3"];
 
     // Retrieve email from sessionStorage
     const userEmail = sessionStorage.getItem('currentUser');
-  
 
     useEffect(() => {
         // Fetch user data
@@ -119,69 +113,77 @@ const ProjectOverview = () => {
         }
     };
 
-
-// Inside the ProjectOverview component
-return (
-    
-    <div
-       
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh",
-            background: "linear-gradient(130deg, #231a6f, #0f054c)",
-        }}
-    >
-         <br /> <br />
-        <div style={{ flex: 3 }}>
-            <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
-            <br />
-            <br />
-            <div style={{ marginLeft: "100px" }}>
-                {project && (
-                    <div>
-                        {Object.keys(project).map((key, index) => (
-                            <Accordion
-                                key={key}
-                                expanded={selectedKeys.includes(key)}
-                                onChange={() => handleKeySelect(key)}
-                                sx={{ width: "100%", marginBottom: "10px", backgroundColor: keyColors[index % keyColors.length] }} // Different color for each key
-                            >
-                                <AccordionSummary
-                                    expandIcon={<ExpandMoreIcon />}
-                                    sx={{ backgroundColor: keyColors[index % keyColors.length] }} // Color for accordion heading
-                                >
-                                  <Typography 
-                                     variant="body1" 
-                                     style={{ color: 'black', cursor: 'pointer', textDecoration: 'none' }}
-                                      onMouseEnter={(e) => e.target.style.color = 'blue'}
-                                     onMouseLeave={(e) => e.target.style.color = 'black'}
-                               >
-                                       {key.toUpperCase()}
-                                       </Typography>
-
-
-                                </AccordionSummary>
-                                <AccordionDetails style={{ backgroundColor: 'white' }}> {/* White background for accordion details */}
-                                    <Typography variant="body1" gutterBottom style={{ color: 'black', fontWeight: 'bold' }}>
-                                        {project[key] in projectsOtherData ? projectsOtherData[project[key]].description : project[key]}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        ))}
-                        
-                    </div>
-                )}
-                {error && <Typography>Error: {error}</Typography>}
+    // Inside the ProjectOverview component
+    return (
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "100vh",
+                background: "linear-gradient(130deg, #231a6f, #0f054c)",
+            }}
+        >
+            <br /> <br />
+            <div style={{ flex: 3 }}>
+                <Typography variant="h5" color={'white'}>PROJECT OVERVIEW</Typography>
+                <br />
+                <br />
+                <div style={{ marginLeft: "100px" }}>
+                    {project && (
+                        <div>
+                            {Object.keys(project)
+                                .filter(key => !['_id', 'projectId', 'studentId', 'email', 'count', '__v'].includes(key))
+                                .map((key, index) => (
+                                    <Accordion
+                                        key={key}
+                                        expanded={selectedKeys.includes(key)}
+                                        onChange={() => handleKeySelect(key)}
+                                        sx={{ width: "100%", marginBottom: "10px", backgroundColor: keyColors[index % keyColors.length] }} // Different color for each key
+                                    >
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            sx={{ backgroundColor: keyColors[index % keyColors.length] }} // Color for accordion heading
+                                        >
+                                            <Typography
+                                                variant="body1"
+                                                style={{ color: 'black', cursor: 'pointer', textDecoration: 'none' }}
+                                                onMouseEnter={(e) => e.target.style.color = 'blue'}
+                                                onMouseLeave={(e) => e.target.style.color = 'black'}
+                                            >
+                                                {key.toUpperCase()}
+                                            </Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails style={{ backgroundColor: 'white' }}>
+                                            {project[key] in projectsOtherData && (
+                                                <Typography variant="body2" style={{ color: 'black', fontWeight: 'bold' }}>
+                                                    Title: {projectsOtherData[project[key]].title} <br />
+                                                </Typography>
+                                            )}
+                                            <Typography variant="body1" gutterBottom style={{ color: 'black', fontWeight: 'bold' }}>
+                                                {project[key] in projectsOtherData ? projectsOtherData[project[key]].description : project[key]}
+                                            </Typography>
+                                            {project[key] in projectsOtherData && (
+                                                <Typography variant="body2" style={{ color: 'black', fontWeight: 'bold' }}>
+                                                    Technologies: {projectsOtherData[project[key]].technologies} <br />
+                                                </Typography>
+                                            )}
+                                           
+                                        </AccordionDetails>
+                                        
+                                        
+                                    </Accordion>
+                                ))}
+                        </div>
+                    )}
+                    {error && <Typography>Error: {error}</Typography>}
+                </div>
+            </div>
+            <div style={{ background: "red", flex: 1 }}>
+                {/* Content for the right side */}
             </div>
         </div>
-        <div style={{ background: "red", flex: 1 }}>
-            {/* Content for the right side */}
-        </div>
-    </div>
-);
-
+    );
 };
 
 export default ProjectOverview;
